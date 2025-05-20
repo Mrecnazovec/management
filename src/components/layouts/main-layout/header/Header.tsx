@@ -32,11 +32,11 @@ const menuSections = [
 	{
 		title: 'Университет',
 		links: [
-			{ href: PUBLIC_URL.home(), label: 'Университет', bold: true },
-			{ href: PUBLIC_URL.home(), label: 'Руководство' },
-			{ href: PUBLIC_URL.home(), label: 'Преподаватели' },
-			{ href: PUBLIC_URL.home(), label: 'Студ. совет' },
-			{ href: PUBLIC_URL.home(), label: 'Новости' },
+			{ href: PUBLIC_URL.university(), label: 'Университет', bold: true },
+			{ href: PUBLIC_URL.university('administration'), label: 'Руководство' },
+			{ href: PUBLIC_URL.university('teachers'), label: 'Преподаватели' },
+			{ href: PUBLIC_URL.university('union'), label: 'Студ. совет' },
+			{ href: PUBLIC_URL.university('news'), label: 'Новости' },
 		],
 	},
 	{
