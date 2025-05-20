@@ -45,6 +45,10 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-main: #0D579B;
+  --color-secondary: #0C9878;
+  --color-danger: #7D0A35;
+  --color-paragraph: #575757;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
