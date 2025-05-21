@@ -22,13 +22,13 @@ export function Header() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
-		<div className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px]'>
-			<Container className='py-1 flex items-center justify-between absolute z-10 left-0 right-0 m-auto'>
+		<div className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
+			<Container className={cn('py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto bg-gradient-to-r from-main from-25% to-secondary to-75%', `${isOpen && 'fixed'}`)}>
 				<Link className='flex items-center gap-2.5 text-white w-fit p-2 hover:opacity-85 transition-opacity' href={PUBLIC_URL.home()}>
-					<Image src='/svg/EconLogo.svg' alt='logo' width={80} height={62} />
+					<Image src='/svg/EconLogo.svg' alt='logo' width={80} height={62} className='max-[390px]:w-[60px]'/>
 					<div>
-						<p className='text-xl'>Направление менеджмент</p>
-						<p className='text-sm'>ТФ МГУ имени М.В.Ломоносова</p>
+						<p className='text-xl max-[390px]:text-sm'>Направление <br className='sm:hidden block'/> менеджмент</p>
+						<p className='text-sm sm:block hidden'>ТФ МГУ имени М.В.Ломоносова</p>
 					</div>
 				</Link>
 
@@ -41,11 +41,11 @@ export function Header() {
 
 			<div
 				className={cn(
-					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-[height] duration-500 absolute  left-0 overflow-hidden flex items-center justify-center text-white delay-300 overflow-y-scroll',
+					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-[height] duration-500 fixed  left-0 overflow-hidden flex items-center justify-center text-white delay-300 overflow-y-scroll max-[390px]:top-[0] z-10',
 					isOpen && 'h-screen delay-0'
 				)}
 			>
-				<Container className={cn('opacity-0 transition-all duration-500', isOpen && 'opacity-100 delay-300')}>
+				<Container className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[30px] max-[300px]:pt-[320px]')}>
 					<MenuLinks menuSections={MenuSections} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px]'>
