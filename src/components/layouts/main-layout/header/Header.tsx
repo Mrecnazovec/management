@@ -41,7 +41,7 @@ export function Header() {
 
 			<div
 				className={cn(
-					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-[height] duration-500 fixed  left-0 overflow-hidden flex items-center justify-center text-white delay-300 overflow-y-scroll max-[390px]:top-[0] z-10',
+					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-[height] duration-500 fixed  left-0 overflow-hidden flex items-center justify-center text-white delay-300 overflow-y-scroll max-[390px]:top-[0] z-10 no-scrollbar',
 					isOpen && 'h-screen delay-0'
 				)}
 			>
