@@ -44,35 +44,35 @@ export function NewsCarousel({ classname }: Props) {
 		>
 			<CarouselContent className='mb-6 pb-6'>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
 						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
 					</Link>
 				</CarouselItem>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
 						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
 					</Link>
 				</CarouselItem>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
 						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
 					</Link>
 				</CarouselItem>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
 						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
 					</Link>
 				</CarouselItem>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
 						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
@@ -90,7 +90,7 @@ export function NewsCarousel({ classname }: Props) {
 			<div className='flex justify-end'>
 				<CarouselPrevious className='top-full left-0' />
 				<CarouselNext className='top-full left-10' />
-				<Link href={PUBLIC_URL.university('news')}>
+				<Link href={PUBLIC_URL.news('new-website')}>
 					<Button variant={'main'}>Все новости</Button>
 				</Link>
 			</div>

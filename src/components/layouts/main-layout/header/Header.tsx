@@ -10,7 +10,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-
 export function Header() {
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -20,11 +19,19 @@ export function Header() {
 		setIsOpen(false)
 	}, [pathname])
 
+	useEffect(() => {
+		if (isOpen) {
+			document.body.style.overflow = 'hidden'
+		} else {
+			document.body.style.overflow = ''
+		}
+	}, [isOpen])
+
 	return (
-		<div className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
+		<header className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
 			<Container
 				className={cn(
-					'py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto bg-gradient-to-r from-main from-25% to-secondary to-75%',
+					'py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto max-[390px]:bg-gradient-to-r max-[390px]:from-main max-[390px]:from-25% max-[390px]:to-secondary max-[390px]:to-75%',
 					`${isOpen && 'fixed'}`
 				)}
 			>
@@ -63,6 +70,6 @@ export function Header() {
 					</ul>
 				</Container>
 			</div>
-		</div>
+		</header>
 	)
 }

@@ -7,6 +7,7 @@ export const PUBLIC_URL = {
 	applicant: (url = '') => PUBLIC_URL.root(`/applicant${url ? url : ''}`),
 	contacts: () => PUBLIC_URL.root(`/applicant/contacts`),
 	university: (url = '') => PUBLIC_URL.root(`/university/${url ? url : ''}`),
+	news: (url = '') => PUBLIC_URL.root(`/university/news/${url ? url : ''}`),
 	students: (url = '') => PUBLIC_URL.root(`/students/${url ? url : ''}`),
 	agreement: (url = '') => PUBLIC_URL.root(`/PDPAgreement/${url ? url : ''}`),
 }

@@ -1,8 +1,11 @@
+'use client' 
+
 import { Container } from '@/components/ui/Container'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
+import { ContactForm } from './form-section/ContactForm'
 
 interface Props {
 	className?: string
@@ -87,7 +90,9 @@ export function Applicant() {
 						100060, Узбекистан, Ташкент, пр. Амира Темура дом 22.
 					</A>
 				</Span>
-				<P>Перечень необходимых документов:</P>
+				<P>
+					<span id='docs'>Перечень необходимых документов:</span>
+				</P>
 				<ul className='mb-4'>
 					<Li>
 						заявление (через электронную информационную систему МГУ – <A href='https://webanketa.msu.ru/'>webanketa.msu.ru</A>.);
@@ -203,6 +208,7 @@ export function Applicant() {
 				<Span className='text-black'>
 					Канал приемной комиссии в Telegram: <A href='https://t.me/tf_msu_abiturient'>https://t.me/tf_msu_abiturient</A>
 				</Span>
+				<ContactForm />
 			</div>
 		</Container>
 	)

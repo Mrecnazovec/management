@@ -6,8 +6,8 @@ export const MenuSections = [
 		links: [
 			{ href: PUBLIC_URL.applicant(), label: 'Абитуриентам', bold: true },
 			{ href: PUBLIC_URL.applicant('#docs'), label: 'Документы' },
-			{ href: PUBLIC_URL.applicant('#commission'), label: 'Приёмная комиссия' },
-			{ href: PUBLIC_URL.applicant('#form'), label: 'Подготовка к поступлению' },
+			// { href: PUBLIC_URL.applicant('#commission'), label: 'Приёмная комиссия' },
+			// { href: PUBLIC_URL.applicant('#form'), label: 'Подготовка к поступлению' },
 			{ href: PUBLIC_URL.contacts(), label: 'Контакты' },
 		],
 	},

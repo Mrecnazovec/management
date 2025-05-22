@@ -42,7 +42,7 @@ export function HomeCarousel({ classname }: Props) {
 		>
 			<CarouselContent className='mb-[25px]'>
 				<CarouselItem>
-					<Link href={PUBLIC_URL.university('news')}>
+					<Link href={PUBLIC_URL.news('new-website')}>
 						<div className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] bg-red-500 max-sm:aspect-video rounded-2xl'></div>
 					</Link>
 				</CarouselItem>

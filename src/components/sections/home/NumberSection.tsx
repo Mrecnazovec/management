@@ -5,9 +5,9 @@ export function NumberSection() {
 	return (
 		<Container className='pb-25 border-b-2 border-b-paragraph/30'>
 			<h2 className='text-center text-4xl mb-15'>Менеджмент в цифрах</h2>
-			<div className='flex justify-around sm:flex-row flex-col items-center gap-4 flex-wrap'>
+			<div className='flex justify-around flex-row max-[470px]:flex-col items-center gap-4 flex-wrap'>
 				<div className='w-fit flex flex-col items-center justify-center'>
-					<div className='flex items-center justify-center rounded-full size-[180px] bg-gradient-to-b from-main to-secondary mb-2'>
+					<div className='flex items-center justify-center rounded-full md:size-[180px] size-[130px] bg-gradient-to-b from-main to-secondary mb-2'>
 						<div className='flex items-center justify-center rounded-full size-[90%] bg-white'>
 							<CountUp end={4} className='text-3xl'></CountUp>
 						</div>
@@ -15,7 +15,7 @@ export function NumberSection() {
 					<p className='text-center text-2xl'>Года обучения</p>
 				</div>
 				<div className='w-fit flex flex-col items-center justify-center'>
-					<div className='flex items-center justify-center rounded-full size-[180px] bg-gradient-to-b from-main to-secondary mb-2'>
+					<div className='flex items-center justify-center rounded-full md:size-[180px] size-[130px] bg-gradient-to-b from-main to-secondary mb-2'>
 						<div className='flex items-center justify-center rounded-full size-[90%] bg-white'>
 							<span className='text-3xl'>{'>'}</span>
 							<CountUp end={50} className='text-3xl'></CountUp>
@@ -24,7 +24,7 @@ export function NumberSection() {
 					<p className='text-center text-2xl'>Предметных курсов</p>
 				</div>
 				<div className='w-fit flex flex-col items-center justify-center'>
-					<div className='flex items-center justify-center rounded-full size-[180px] bg-gradient-to-b from-main to-secondary mb-2'>
+					<div className='flex items-center justify-center rounded-full md:size-[180px] size-[130px] bg-gradient-to-b from-main to-secondary mb-2'>
 						<div className='flex items-center justify-center rounded-full size-[90%] bg-white'>
 							<CountUp end={85} className='text-3xl'></CountUp>
 						</div>
