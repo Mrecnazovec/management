@@ -7,27 +7,33 @@ import { MenuSections } from '@/constants/menu.constants'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
-
-
-type MenuItem = {
-	href: string
-	label: string
-	bold?: boolean
-	external?: boolean
-}
 
 export function Header() {
 	const [isOpen, setIsOpen] = useState(false)
 
+	const pathname = usePathname()
+
+	useEffect(() => {
+		setIsOpen(false)
+	}, [pathname])
+
 	return (
 		<div className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
-			<Container className={cn('py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto bg-gradient-to-r from-main from-25% to-secondary to-75%', `${isOpen && 'fixed'}`)}>
+			<Container
+				className={cn(
+					'py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto bg-gradient-to-r from-main from-25% to-secondary to-75%',
+					`${isOpen && 'fixed'}`
+				)}
+			>
 				<Link className='flex items-center gap-2.5 text-white w-fit p-2 hover:opacity-85 transition-opacity' href={PUBLIC_URL.home()}>
-					<Image src='/svg/EconLogo.svg' alt='logo' width={80} height={62} className='max-[390px]:w-[60px]'/>
+					<Image src='/svg/EconLogo.svg' alt='logo' width={80} height={62} className='max-[390px]:w-[60px]' />
 					<div>
-						<p className='text-xl max-[390px]:text-sm'>Направление <br className='sm:hidden block'/> менеджмент</p>
+						<p className='text-xl max-[390px]:text-sm'>
+							Направление <br className='sm:hidden block' /> менеджмент
+						</p>
 						<p className='text-sm sm:block hidden'>ТФ МГУ имени М.В.Ломоносова</p>
 					</div>
 				</Link>
@@ -45,7 +51,9 @@ export function Header() {
 					isOpen && 'h-screen delay-0'
 				)}
 			>
-				<Container className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[30px] max-[300px]:pt-[320px]')}>
+				<Container
+					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[230px] max-[300px]:pt-[450px]')}
+				>
 					<MenuLinks menuSections={MenuSections} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px]'>

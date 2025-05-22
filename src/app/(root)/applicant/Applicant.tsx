@@ -18,8 +18,8 @@ function Span({ children, className }: PropsWithChildren<Props>) {
 
 function Li({ children, className }: PropsWithChildren<Props>) {
 	return (
-		<li className={cn('flex items-center gap-2.5 mb-4', className)}>
-			<div className='w-6 h-[2px] bg-secondary object-cover'></div>
+		<li className={cn('flex items-center mb-4 relative pl-8.5', className)}>
+			<div className='w-6 h-[2px] bg-secondary absolute left-0 top-3'></div>
 			<p className='text-paragraph'>{children}</p>
 		</li>
 	)
@@ -42,11 +42,11 @@ export function Applicant() {
 	return (
 		<Container>
 			<h1 className='sr-only'>Абитуриентам</h1>
-			<h2 className='text-center text-3xl mb-4'>Информация для абитуриентов направления «Менеджмент»</h2>
-			<p className='text-xl text-center mb-8'>Уважаемый абитуриент!</p>
-			<div className='flex items-center gap-14 mb-8'>
+			<h2 className='text-center sm:text-3xl text-xl mb-4'>Информация для абитуриентов направления «Менеджмент»</h2>
+			<p className='sm:text-xl text-base text-center mb-8'>Уважаемый абитуриент!</p>
+			<div className='flex items-center gap-14 mb-8 max-lg:flex-col'>
 				<Image src='/jpg/test.jpg' alt='Абитуриентка' width={500} height={333} />
-				<p className='max-w-[560px] leading-[38px] text-xl'>
+				<p className='lg:max-w-[560px] leading-[38px] text-xl'>
 					Сроки приёма документов на обучение в 2025/2026 учебном году — с 20 июня по 10 июля 2025 года. <br /> <br /> Списки поступающих, успешно
 					прошедших вступительные испытания, будут опубликованы не позднее 20 августа 2025 года.
 				</p>
