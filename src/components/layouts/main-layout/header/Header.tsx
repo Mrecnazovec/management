@@ -52,7 +52,7 @@ export function Header() {
 				)}
 			>
 				<Container
-					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[230px] max-[300px]:pt-[450px]')}
+					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[350px] max-[300px]:pt-[450px]')}
 				>
 					<MenuLinks menuSections={MenuSections} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
