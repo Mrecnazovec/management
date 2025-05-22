@@ -1,4 +1,4 @@
-import { Slash } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '../Breadcrumb'
 import { Container } from '../Container'
 
@@ -28,7 +28,7 @@ export function Bread({ navigation }: Props) {
 								</BreadcrumbItem>
 								{item.link && (
 									<BreadcrumbSeparator>
-										<Slash />
+										<ChevronRight />
 									</BreadcrumbSeparator>
 								)}
 							</div>
