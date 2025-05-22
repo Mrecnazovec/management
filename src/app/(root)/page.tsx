@@ -1,4 +1,3 @@
-import { Container } from '@/components/ui/Container'
 import { Home } from './Home'
 
 // export const metadata: Metadata = {
