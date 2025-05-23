@@ -2,7 +2,7 @@ export const NO_INDEX_PAGE = { robots: { index: false, follow: false } }
 
 export const SITE_NAME = 'Менеджмент МГУ'
 export const SITE_DESCRIPTION =
-  'description'
+  'Test description Hello world'
 export const SITE_KEYWORDS = [
   'keywords',
 ]
