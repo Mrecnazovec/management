@@ -24,4 +24,5 @@ export const PATH_URL = {
 	jpg: (filename = '') => PATH_URL.root(`/jpg/${filename ? filename : ''}`),
 	png: (filename = '') => PATH_URL.root(`/png/${filename ? filename : ''}`),
 	svg: (filename = '') => PATH_URL.root(`/svg/${filename ? filename : ''}`),
+	pdf: (filename = '') => PATH_URL.root(`/pdf/${filename ? filename : ''}`),
 }
