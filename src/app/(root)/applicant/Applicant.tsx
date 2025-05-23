@@ -1,4 +1,4 @@
-'use client' 
+'use client'
 
 import { Container } from '@/components/ui/Container'
 import { cn } from '@/lib/utils'
@@ -205,10 +205,11 @@ export function Applicant() {
 				<Span className='text-black'>
 					Сайт: <A href='https://msu.uz/enrollee'>https://msu.uz/enrollee</A>
 				</Span>
-				<Span className='text-black'>
-					Канал приемной комиссии в Telegram: <A href='https://t.me/tf_msu_abiturient'>https://t.me/tf_msu_abiturient</A>
+				<Span className='text-black mb-14'>
+					<span id='commission'>Канал приемной комиссии в Telegram:</span> <A href='https://t.me/tf_msu_abiturient'>https://t.me/tf_msu_abiturient</A>
 				</Span>
 				<ContactForm />
+
 			</div>
 		</Container>
 	)

@@ -17,3 +17,11 @@ export const DASHBOARD_URL = {
 
 	home: () => DASHBOARD_URL.root('/'),
 }
+
+export const PATH_URL = {
+	root: (url = '') => `${url ? url : ''}`,
+
+	jpg: (filename = '') => PATH_URL.root(`/jpg/${filename ? filename : ''}`),
+	png: (filename = '') => PATH_URL.root(`/png/${filename ? filename : ''}`),
+	svg: (filename = '') => PATH_URL.root(`/svg/${filename ? filename : ''}`),
+}

@@ -23,9 +23,10 @@ type SocialItems = {
 
 type Props = {
 	menuSections: MenuSection
+	onLinkClick?: () => void
 }
 
-export function MenuLinks({ menuSections }: Props) {
+export function MenuLinks({ menuSections, onLinkClick }: Props) {
 	return (
 		<ul className='flex justify-between pb-[30px] border-b-1 border-white flex-wrap gap-8'>
 			{menuSections.map((section, i) => (
@@ -37,6 +38,7 @@ export function MenuLinks({ menuSections }: Props) {
 							href={href}
 							target={external ? '_blank' : '_self'}
 							className={cn('hover:opacity-85 transition-opacity', bold ? 'text-lg font-bold' : 'text-base font-light')}
+							onClick={onLinkClick}
 						>
 							{label}
 						</Link>

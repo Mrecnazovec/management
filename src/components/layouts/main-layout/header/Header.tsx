@@ -27,6 +27,18 @@ export function Header() {
 		}
 	}, [isOpen])
 
+	useEffect(() => {
+		const handleHashChange = () => {
+			setIsOpen(false)
+		}
+
+		window.addEventListener('hashchange', handleHashChange)
+
+		return () => {
+			window.removeEventListener('hashchange', handleHashChange)
+		}
+	}, [])
+
 	return (
 		<header className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
 			<Container
@@ -61,7 +73,7 @@ export function Header() {
 				<Container
 					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[350px] max-[300px]:pt-[450px]')}
 				>
-					<MenuLinks menuSections={MenuSections} />
+					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px]'>
 							<p className='text-base font-semibold'>Направление Менеджмент ТФ МГУ имени М.В.Ломоносова</p>

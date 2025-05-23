@@ -36,24 +36,27 @@ export function ContactForm() {
 	const agreed = form.watch('agreed')
 
 	const sendToTelegram = async (data: IContactFormInput) => {
-		const chatId = ''
-		const token = ''
+		const chatId = '-1002628023861'
+		const token = '7447864359:AAHhRpTXCqGKMGvy3mTJHvJvwqSVs6H5_kE'
 		const url = `https://api.telegram.org/bot${token}/sendMessage`
 
+		console.log(data);
+		
+
 		const message = `
-📩 Новая заявка:
-👤 Имя: ${data.name}
-📞 Телефон: ${data.tel}
-💬 Телеграм: ${data.telegram}
-📌 Статус: ${data.status}
-✅ Согласие на обработку: ${data.agreed ? 'Да' : 'Нет'}
+Новая заявка:
+Имя: ${data.name}
+Телефон: ${data.tel}
+Телеграм: ${data.telegram}
+Статус: ${data.status}
+Согласие на обработку: ${data.agreed ? 'Да' : 'Нет'}
 `
 
 		try {
 			await axios.post(url, {
 				chat_id: chatId,
 				text: message,
-				parse_mode: 'Markdown',
+				parse_mode: 'HTML',
 			})
 			toast.success('Сообщение отправлено')
 			form.reset()
@@ -71,9 +74,9 @@ export function ContactForm() {
 	}
 
 	return (
-		<div className='max-w-xl mx-auto'>
-			<h2 className='text-2xl font-bold text-center mb-1'>Оставьте свои контакты</h2>
-			<p className='text-center text-muted-foreground mb-6'>и мы свяжемся с вами</p>
+		<div id='form' className='max-w-3xl mx-auto mb-10'>
+			<h2 className='text-2xl font-bold text-center mb-1'>Остались вопросы?</h2>
+			<p className='text-center text-muted-foreground mb-6'>оставьте заявку и мы свяжемся с вами!</p>
 			<Form {...form}>
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
 					<FormField
@@ -160,12 +163,19 @@ export function ContactForm() {
 								<FormControl>
 									<Checkbox checked={field.value} onCheckedChange={field.onChange} />
 								</FormControl>
-								<FormLabel className='text-sm text-muted-foreground gap-1'>Даю согласие на обработку <Link href={PUBLIC_URL.agreement()} className='underline'>персональных данных</Link></FormLabel>
+								<FormLabel className='text-sm text-muted-foreground gap-1'>
+									<p>
+										Даю согласие на обработку{' '}
+										<Link href={PUBLIC_URL.agreement()} className='underline inline'>
+											персональных данных
+										</Link>
+									</p>
+								</FormLabel>
 							</FormItem>
 						)}
 					/>
 
-					<Button type='submit' className='w-full' disabled={!form.formState.isValid}>
+					<Button type='submit' variant={'main'} className='w-full' disabled={!form.formState.isValid}>
 						Отправить
 					</Button>
 				</form>

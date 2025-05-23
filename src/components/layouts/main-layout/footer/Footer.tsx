@@ -26,7 +26,7 @@ export function Footer() {
 						</Link>
 					</li>
 					<li className='flex flex-col gap-[30px]'>
-						<p className='text-base font-semibold max-w-[214px]'>Сайт выполнен Научным сектором Менеджмента</p>
+						<p className='text-base font-semibold max-w-[214px]'>Сайт выполнен Научным сектором Менеджмента - <Link className='underline' href='https://t.me/AlexITdrom'>Alexander</Link></p>
 					</li>
 				</ul>
 			</Container>

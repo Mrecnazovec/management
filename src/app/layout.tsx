@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from '@/constants/seo.constants'
+import { Toaster } from 'react-hot-toast'
+import NextTopLoader from 'nextjs-toploader';
 
 const interSans = Inter({
 	variable: '--font-inter-sans',
@@ -25,7 +27,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru'>
-			<body className={`${interSans.variable} antialiased`}>{children}</body>
+			<body className={`${interSans.variable} antialiased`}>
+				<NextTopLoader />
+				<Toaster />
+				{children}
+			</body>
 		</html>
 	)
 }
