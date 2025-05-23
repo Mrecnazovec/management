@@ -13,6 +13,7 @@ type LinkItems = {
 	label: string
 	bold?: boolean
 	external?: boolean
+	isClose?: boolean
 }
 
 type SocialItems = {
@@ -32,13 +33,13 @@ export function MenuLinks({ menuSections, onLinkClick }: Props) {
 			{menuSections.map((section, i) => (
 				<li key={i} className='flex flex-col gap-5'>
 					{!section.links[0].bold && <p className='font-bold text-lg'>{section.title}</p>}
-					{section.links.map(({ href, label, bold, external }: LinkItems, j) => (
+					{section.links.map(({ href, label, bold, external, isClose }: LinkItems, j) => (
 						<Link
 							key={j}
 							href={href}
 							target={external ? '_blank' : '_self'}
 							className={cn('hover:opacity-85 transition-opacity', bold ? 'text-lg font-bold' : 'text-base font-light')}
-							onClick={onLinkClick}
+							onClick={isClose ? onLinkClick : undefined}
 						>
 							{label}
 						</Link>
