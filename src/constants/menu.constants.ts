@@ -1,4 +1,4 @@
-import { PUBLIC_URL } from "@/config/url.config";
+import { PUBLIC_URL } from '@/config/url.config'
 
 export const MenuSections = [
 	{
@@ -34,13 +34,13 @@ export const MenuSections = [
 	{
 		title: 'Ресурсы',
 		links: [
-			{ href: PUBLIC_URL.home(), label: 'msu.uz' },
-			{ href: PUBLIC_URL.home(), label: 'econ.msu.ru' },
+			{ href: 'https://msu.uz', label: 'msu.uz' },
+			{ href: 'https://www.econ.msu.ru', label: 'econ.msu.ru' },
 		],
 		socials: [
-			{ src: '/svg/inst.svg', alt: 'instagram', href: '' },
-			{ src: '/svg/tg.svg', alt: 'telegram', href: '' },
-			{ src: '/svg/web.svg', alt: 'website', href: '' },
+			{ src: '/svg/inst.svg', alt: 'instagram', href: 'https://www.instagram.com/msu_uz_management/?utm_source=ig_web_button_share_sheet' },
+			{ src: '/svg/tg.svg', alt: 'telegram', href: 'https://t.me/Managment_TF_MSU' },
+			{ src: '/svg/web.svg', alt: 'website', href: 'https://msu-management.uz' },
 		],
 	},
 ]

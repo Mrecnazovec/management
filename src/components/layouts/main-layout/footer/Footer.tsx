@@ -5,7 +5,6 @@ import { MenuSections } from '@/constants/menu.constants'
 import Link from 'next/link'
 
 export function Footer() {
-
 	return (
 		<footer className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-t-4 border-t-danger text-white sm:py-10 py-5'>
 			<Container>
@@ -21,12 +20,17 @@ export function Footer() {
 						<p className='text-base font-semibold max-w-[410px]'>
 							При использовании материалов, размещенных на этом web-сайте, ссылка на источник обязательна!
 						</p>
-						<Link href={PUBLIC_URL.applicant()} className='text-base font-normal underline'>
+						<Link href={PUBLIC_URL.agreement()} className='text-base font-normal underline'>
 							Политика обработки данных
 						</Link>
 					</li>
 					<li className='flex flex-col gap-[30px]'>
-						<p className='text-base font-semibold max-w-[214px]'>Сайт выполнен Научным сектором Менеджмента - <Link className='underline' href='https://t.me/AlexITdrom'>Alexander</Link></p>
+						<p className='text-base font-semibold max-w-[214px]'>
+							Сайт выполнен Научным сектором Менеджмента -{' '}
+							<Link className='underline' href='https://t.me/AlexITdrom'>
+								Alexander
+							</Link>
+						</p>
 					</li>
 				</ul>
 			</Container>
