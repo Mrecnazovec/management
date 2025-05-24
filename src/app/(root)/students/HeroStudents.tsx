@@ -1,5 +1,5 @@
-import { Container } from "@/components/ui/Container"
-import { PATH_URL } from "@/config/url.config"
+import { Container } from '@/components/ui/Container'
+import { PATH_URL } from '@/config/url.config'
 
 export function HeroStudents() {
 	const documents = [
@@ -9,8 +9,8 @@ export function HeroStudents() {
 		{ label: 'Устав МГУ', path: PATH_URL.pdf('charter.pdf') },
 	]
 	return (
-		<div className='bg-[url("/png/bgstudents.png")] h-[530px] bg-no-repeat bg-cover bg-center 2xl:container mx-auto mb-15'>
-			<Container className='text-white text-center pt-15'>
+		<div className='bg-[url("/png/bgstudents.png")] h-[530px] bg-no-repeat bg-cover bg-center 2xl:container mx-auto mb-15 after:content-[""] relative after:absolute after:w-full after:h-full after:top-0 after:left-0 after:z-0 after:bg-gradient-to-r after:from-main after:to-secondary after:opacity-80 mix-blend-multiply'>
+			<Container className='text-white text-center pt-15 z-10 relative'>
 				<p className='mb-4 text-lg'>Полезная информация</p>
 				<h1 className='text-5xl font-msu mb-15'>Студентам</h1>
 				<ul className='grid sm:grid-cols-2 sm:grid-rows-2 grid-cols-1 gap-7 lg:max-w-[70%] mx-auto'>
