@@ -89,12 +89,17 @@ export function PDAgreement() {
 				последнего обновления. Новая редакция Соглашения вступает в силу с момента ее размещения, если иное не предусмотрено новой редакцией
 				Соглашения.
 			</P>
-			<P>
+			<P className='mb-25'>
 				Действующая редакция всегда находится на странице по адресу:{' '}
 				<Link className='text-main hover:opacity-85 transition-opacity' href='https://www.msu-management.uz/PDPAgreement'>
 					https://www.msu-management.uz/PDPAgreement
 				</Link>
 			</P>
+			<div className='flex justify-end'>
+				<div className='bg-[#F5F8FD] border-l-3 border-l-black px-9'>
+					<p>25 мая 2025</p>
+				</div>
+			</div>
 		</Container>
 	)
 }

@@ -3,8 +3,15 @@ import { Header } from '@/components/layouts/main-layout/header/Header'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { PATH_URL, PUBLIC_URL } from '@/config/url.config'
+import { NO_INDEX_PAGE } from '@/constants/seo.constants'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+	title: 'Страница в разработке',
+	...NO_INDEX_PAGE
+}
 
 export default function NotFound() {
 	return (
