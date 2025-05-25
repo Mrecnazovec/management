@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export function HistorySection() {
 	return (
-		<Container className='pt-20 mb-20'>
+		<Container className='pt-20'>
 			<h2 className='mb-10 text-3xl'>История ТФ МГУ</h2>
 			<p className='mb-10'>
 				Ташкентский филиал МГУ создан в 2006 году, это учебное заведение сегодня является ведущим центром подготовки специалистов в области

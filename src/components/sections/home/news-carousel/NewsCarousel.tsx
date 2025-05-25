@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
 import { Button } from '@/components/ui/Button'
 import Image from 'next/image'
+import { NewsCard } from '@/components/cards/NewsCard'
 
 interface Props {
 	classname?: string
@@ -45,13 +46,7 @@ export function NewsCarousel({ classname }: Props) {
 		>
 			<CarouselContent className='mb-6 pb-6'>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-gradient-to-r from-main to-secondary rounded-2xl mb-4 text-xl flex items-center justify-center'>
-							<Image src={PATH_URL.svg('website.svg')} alt='Новый сайт' width={200} height={200}/>
-						</div>
-						<p className='mb-4'>Направление Менеджмента обновил свой личный сайт для поддержки студентов и информировании абитуриентов</p>
-						<span className='text-muted-foreground'>21 мая 2025</span>
-					</Link>
+					<NewsCard />
 				</CarouselItem>
 			</CarouselContent>
 			<div className='border-b-2 border-b-paragraph/30 mb-6'></div>
@@ -65,7 +60,7 @@ export function NewsCarousel({ classname }: Props) {
 			<div className='flex justify-end'>
 				<CarouselPrevious className='top-full left-0' />
 				<CarouselNext className='top-full left-10' />
-				<Link href={PUBLIC_URL.news('new-website')}>
+				<Link href={PUBLIC_URL.news('')}>
 					<Button variant={'main'}>Все новости</Button>
 				</Link>
 			</div>

@@ -1,4 +1,5 @@
 import { Container } from '@/components/ui/Container'
+import { DataTag } from '@/components/ui/DataTag'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
@@ -95,11 +96,7 @@ export function PDAgreement() {
 					https://www.msu-management.uz/PDPAgreement
 				</Link>
 			</P>
-			<div className='flex justify-end'>
-				<div className='bg-[#F5F8FD] border-l-3 border-l-black px-9'>
-					<p>25 мая 2025</p>
-				</div>
-			</div>
+			<DataTag />
 		</Container>
 	)
 }
