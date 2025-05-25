@@ -14,13 +14,13 @@ export function Footer() {
 						<p className='text-base font-semibold'>
 							Направление Менеджмент <br /> ТФ МГУ имени М.В.Ломоносова
 						</p>
-						<p className='text-base font-normal'>© 2023-2025</p>
+						<p className='text-base font-normal mb-[30px]'>© 2023-2025</p>
 					</li>
 					<li className='flex flex-col gap-[30px]'>
 						<p className='text-base font-semibold max-w-[410px]'>
 							При использовании материалов, размещенных на этом web-сайте, ссылка на источник обязательна!
 						</p>
-						<Link href={PUBLIC_URL.agreement()} className='text-base font-normal underline'>
+						<Link href={PUBLIC_URL.agreement()} className='text-base font-normal underline mb-[30px]'>
 							Политика обработки данных
 						</Link>
 					</li>
