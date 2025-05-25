@@ -7,7 +7,7 @@ export const MenuSections = [
 			{ href: PUBLIC_URL.applicant(), label: 'Абитуриентам', bold: true },
 			{ href: PUBLIC_URL.applicant('#docs'), label: 'Документы', isClose: true },
 			{ href: PUBLIC_URL.applicant('#commission'), label: 'Приёмная комиссия', isClose: true },
-			{ href: PUBLIC_URL.applicant('#form'), label: 'Подготовка к поступлению', isClose: true },
+			{ href: 'https://msu.uz/courses', label: 'Подготовка к поступлению' },
 			{ href: PUBLIC_URL.contacts(), label: 'Контакты' },
 		],
 	},

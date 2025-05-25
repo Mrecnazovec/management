@@ -208,8 +208,6 @@ export function Applicant() {
 				<Span className='text-black mb-14'>
 					<span id='commission'>Канал приемной комиссии в Telegram:</span> <A href='https://t.me/tf_msu_abiturient'>https://t.me/tf_msu_abiturient</A>
 				</Span>
-				<ContactForm />
-
 			</div>
 		</Container>
 	)

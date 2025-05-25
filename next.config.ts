@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
 		APP_URL: process.env.APP_URL,
 		APP_DOMAIN: process.env.APP_DOMAIN,
 		SERVER_URL: process.env.SERVER_URL,
+		CHAT_ID: process.env.CHAT_ID,
+		TELEGRAM_TOKEN: process.env.TELEGRAM_TOKEN,
 	},
 	images: {
 		remotePatterns: [

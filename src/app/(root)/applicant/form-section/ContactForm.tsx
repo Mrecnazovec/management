@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form-element/Form'
@@ -36,12 +35,11 @@ export function ContactForm() {
 	const agreed = form.watch('agreed')
 
 	const sendToTelegram = async (data: IContactFormInput) => {
-		const chatId = '-1002628023861'
-		const token = '7447864359:AAHhRpTXCqGKMGvy3mTJHvJvwqSVs6H5_kE'
+		const chatId = process.env.CHAT_ID
+		const token = process.env.TELEGRAM_TOKEN
 		const url = `https://api.telegram.org/bot${token}/sendMessage`
 
-		console.log(data);
-		
+		console.log(data)
 
 		const message = `
 Новая заявка:
@@ -74,9 +72,7 @@ export function ContactForm() {
 	}
 
 	return (
-		<div id='form' className='max-w-3xl mx-auto mb-10'>
-			<h2 className='text-2xl font-bold text-center mb-1'>Остались вопросы?</h2>
-			<p className='text-center text-muted-foreground mb-6'>оставьте заявку и мы свяжемся с вами!</p>
+		<div className='w-full mx-auto mb-10'>
 			<Form {...form}>
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
 					<FormField
@@ -99,10 +95,10 @@ export function ContactForm() {
 						name='tel'
 						rules={{
 							required: 'Введите номер телефона',
-							pattern: {
-								value: validPhone,
-								message: 'Некорректный номер',
-							},
+							// pattern: {
+							// 	value: validPhone,
+							// 	message: 'Некорректный номер',
+							// },
 						}}
 						render={({ field }) => (
 							<FormItem>

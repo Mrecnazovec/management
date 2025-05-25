@@ -2,12 +2,13 @@ import React from 'react'
 
 import { type CarouselApi } from '@/components/ui/Carousel'
 import Link from 'next/link'
-import { PUBLIC_URL } from '@/config/url.config'
+import { PATH_URL, PUBLIC_URL } from '@/config/url.config'
 import Autoplay from 'embla-carousel-autoplay'
 
 import { cn } from '@/lib/utils'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
 import { Button } from '@/components/ui/Button'
+import Image from 'next/image'
 
 interface Props {
 	classname?: string
@@ -45,36 +46,10 @@ export function NewsCarousel({ classname }: Props) {
 			<CarouselContent className='mb-6 pb-6'>
 				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
 					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
-						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
-						<span className='text-muted-foreground'>21 мая 2025</span>
-					</Link>
-				</CarouselItem>
-				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
-						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
-						<span className='text-muted-foreground'>21 мая 2025</span>
-					</Link>
-				</CarouselItem>
-				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
-						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
-						<span className='text-muted-foreground'>21 мая 2025</span>
-					</Link>
-				</CarouselItem>
-				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
-						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
-						<span className='text-muted-foreground'>21 мая 2025</span>
-					</Link>
-				</CarouselItem>
-				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='aspect-[16/9] bg-red-500 rounded-2xl mb-4 text-xl'></div>
-						<p className='mb-4'>Факультет Менеджмента открывает свой личный сайт для поддержки студентов и информировании абитуриентов</p>
+						<div className='aspect-[16/9] bg-gradient-to-r from-main to-secondary rounded-2xl mb-4 text-xl flex items-center justify-center'>
+							<Image src={PATH_URL.svg('website.svg')} alt='Новый сайт' width={200} height={200}/>
+						</div>
+						<p className='mb-4'>Направление Менеджмента обновил свой личный сайт для поддержки студентов и информировании абитуриентов</p>
 						<span className='text-muted-foreground'>21 мая 2025</span>
 					</Link>
 				</CarouselItem>

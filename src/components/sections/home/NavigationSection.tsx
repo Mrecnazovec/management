@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export function NavigationSection() {
 	return (
-		<Container className='sm:flex gap-5 justify-between'>
-			<HomeCarousel classname='sm:w-[65%] max-sm:mb-5' />
-			<div className='space-y-[20px] sm:w-[35%]'>
+		<Container className='lg:flex gap-5 justify-between'>
+			<HomeCarousel classname='lg:w-[65%] max-lg:mb-5' />
+			<div className='space-y-[20px] lg:w-[35%]'>
 				<Link
 					href={PUBLIC_URL.applicant()}
 					className='w-full xl:h-[113px] lg:h-[90px] h-[80px] rounded-[10px] bg-muted-foreground/10 500 px-5 py-4 flex justify-between items-center hover:opacity-85 transition-opacity'
