@@ -3,9 +3,9 @@ import CountUp from 'react-countup'
 
 export function NumberSection() {
 	return (
-		<Container className='pb-25 border-b-2 border-b-paragraph/30'>
+		<Container className=''>
 			<h2 className='text-center text-4xl mb-15'>Менеджмент в цифрах</h2>
-			<div className='flex justify-around flex-row max-[470px]:flex-col items-center gap-4 flex-wrap'>
+			<div className='flex justify-around flex-row max-[470px]:flex-col items-center gap-4 flex-wrap mb-25'>
 				<div className='w-fit flex flex-col items-center justify-center'>
 					<div className='flex items-center justify-center rounded-full md:size-[180px] size-[130px] bg-gradient-to-b from-main to-secondary mb-2'>
 						<div className='flex items-center justify-center rounded-full size-[90%] bg-white'>
@@ -32,6 +32,7 @@ export function NumberSection() {
 					<p className='text-center text-2xl'>Студентов</p>
 				</div>
 			</div>
+			<div className='border-b-2 border-b-paragraph/30'></div>
 		</Container>
 	)
 }
