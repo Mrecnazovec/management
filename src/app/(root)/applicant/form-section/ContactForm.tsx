@@ -114,7 +114,7 @@ export function ContactForm() {
 					<FormField
 						control={control}
 						name='telegram'
-						rules={{ required: 'Введите ваш юзернейм' }}
+						// rules={{ required: 'Введите ваш юзернейм' }}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Юзер телеграмм</FormLabel>
