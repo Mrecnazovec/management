@@ -66,12 +66,12 @@ export function Header() {
 
 			<div
 				className={cn(
-					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-[height] duration-500 fixed  left-0 overflow-hidden flex items-center justify-center text-white delay-300 overflow-y-scroll max-[390px]:top-[0] z-10 no-scrollbar',
-					isOpen && 'h-screen delay-0'
+					'h-0 w-full bg-gradient-to-r from-main from-25% to-secondary to-75% transition-all duration-500 fixed top-[84px] left-0 overflow-hidden flex items-start justify-center text-white delay-300 overflow-y-scroll z-10 no-scrollbar pt-0 max-[390px]:top-[70px]',
+					isOpen && 'h-screen delay-0 '
 				)}
 			>
 				<Container
-					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 max-[390px]:pt-[350px] max-[300px]:pt-[450px]')}
+					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 ')}
 				>
 					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
