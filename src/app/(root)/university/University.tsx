@@ -67,11 +67,11 @@ export function University() {
 					</Link>
 					<Link
 						href={PUBLIC_URL.university('union')}
-						className='sm:aspect-[400/400] aspect-[810/400] sm:col-span-1 col-span-3 bg-red-500 relative rounded-2xl'
+						className='sm:aspect-[400/400] aspect-[810/400] sm:col-span-1 col-span-3 bg-[url("/jpg/union.jpg")] bg-no-repeat bg-cover object-cover relative rounded-2xl bg-[position:top_40%_center]'
 					>
 						<div className='flex items-center gap-2 text-white text-xl absolute md:bottom-[30px] bottom-[5px] md:left-[30px] left-[5px] font-semibold font-msu'>
-							<p>Студ. совет</p>
-							<ArrowUpFromDot className='rotate-90' />
+							{/* <p>Студ. совет</p> */}
+							{/* <ArrowUpFromDot className='rotate-90' /> */}
 						</div>
 					</Link>
 				</div>
