@@ -1,4 +1,5 @@
 import { Container } from '@/components/ui/Container'
+import { PATH_URL } from '@/config/url.config'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -52,7 +53,10 @@ export function Contacts() {
 				<h2 className='text-center sm:text-3xl text-xl lg:mb-14 mb-4'>Контакты</h2>
 
 				<div className='flex items-center gap-14 mb-14 max-lg:flex-col'>
-					<Image src='/jpg/test.jpg' alt='Абитуриентка' width={500} height={333} />
+					<div className='aspect-[16/9] bg-gradient-to-r from-main to-secondary rounded-2xl mb-4 text-xl flex items-center justify-center lg:w-[40%] p-5 w-full'>
+						<Image src={PATH_URL.svg('contacts.svg')} alt='Новый сайт' width={200} height={200} />
+					</div>
+
 					<ul>
 						<Li>+998 (71) 232-28-01 Приемная исполнительного директора</Li>
 						<Li>+998 (71) 233-58-26 Канцелярия и телефон доверия</Li>

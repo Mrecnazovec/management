@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { ContactForm } from './form-section/ContactForm'
+import { PATH_URL } from '@/config/url.config'
 
 interface Props {
 	className?: string
@@ -48,7 +49,13 @@ export function Applicant() {
 			<h2 className='text-center sm:text-3xl text-xl mb-4'>Информация для абитуриентов направления «Менеджмент»</h2>
 			<p className='sm:text-xl text-base text-center mb-8'>Уважаемый абитуриент!</p>
 			<div className='flex items-center gap-14 mb-8 max-lg:flex-col'>
-				<Image src='/jpg/test.jpg' alt='Абитуриентка' width={500} height={333} />
+				<Image
+					src={PATH_URL.jpg('applicant.jpg')}
+					alt='Абитуриентка'
+					width={4080}
+					height={3060}
+					className='aspect-[16/9] rounded-2xl object-cover lg:max-w-[40%]'
+				/>
 				<p className='lg:max-w-[560px] leading-[38px] text-xl'>
 					Сроки приёма документов на обучение в 2025/2026 учебном году — с 20 июня по 10 июля 2025 года. <br /> <br /> Списки поступающих, успешно
 					прошедших вступительные испытания, будут опубликованы не позднее 20 августа 2025 года.

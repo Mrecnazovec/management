@@ -25,6 +25,10 @@ const navigation = [
 		link: PUBLIC_URL.home(),
 	},
 	{
+		title: 'Университет',
+		link: PUBLIC_URL.university(),
+	},
+	{
 		title: 'Новости',
 	},
 ]

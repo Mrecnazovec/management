@@ -1,5 +1,6 @@
 'use client'
 
+import CountdownTimer from '@/components/sections/home/CountdownTimer'
 import { HistorySection } from '@/components/sections/home/HistorySection'
 import { NavigationSection } from '@/components/sections/home/NavigationSection'
 import { NewsSection } from '@/components/sections/home/NewsSection'
@@ -10,6 +11,7 @@ export function Home() {
 		<>
 			<h1 className='sr-only'>Направление Менеджмент ТФ МГУ</h1>
 			<NavigationSection />
+			<CountdownTimer />
 			<NumberSection />
 			<HistorySection />
 			<NewsSection />
