@@ -23,10 +23,14 @@ const navigation = [
 		link: PUBLIC_URL.home(),
 	},
 	{
-		title: 'Новости',
-		link: PUBLIC_URL.university('news')
+		title: 'Университет',
+		link: PUBLIC_URL.university(''),
 	},
-		{
+	{
+		title: 'Новости',
+		link: PUBLIC_URL.university('news'),
+	},
+	{
 		title: 'Обновление сайта',
 	},
 ]
