@@ -18,7 +18,7 @@ const declension = (num: number, words: [string, string, string]) => {
 }
 
 export default function CountdownTimer() {
-	const deadline = dayjs('2026-02-24T23:59:59')
+	const deadline = dayjs('2026-02-23T23:59:59')
 
 	const [timeLeft, setTimeLeft] = useState<TimeLeft>({
 		days: 0,

@@ -18,6 +18,11 @@ export const metadata: Metadata = {
 		'бакалавриат менеджмент',
 		'ТФ МГУ поступление',
 	],
+	openGraph: {
+		title: 'Абитуриентам | Менеджмент МГУ Ташкент',
+		description: 'Поступление на направление "Менеджмент" в ТФ МГУ: что нужно знать абитуриенту.',
+		url: 'https://msu-management.uz/applicant',
+	},
 }
 
 export default function page() {

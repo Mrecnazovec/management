@@ -24,7 +24,7 @@ export function Students() {
 					className='sm:aspect-[585/384] aspect-[810/400] sm:col-span-1 col-span-3 relative rounded-2xl bg-[url("/jpg/plan.jpg")] bg-no-repeat bg-cover object-cover bg-[position:top_20%_center]'
 				>
 					<div className='flex items-center gap-2 text-white text-xl absolute md:bottom-[30px] bottom-[5px] md:left-[30px] left-[5px] font-semibold font-msu'>
-						<p>Расписание</p>
+						<p>Учебный план</p>
 						<ArrowUpFromDot className='rotate-90' />
 					</div>
 				</Link>

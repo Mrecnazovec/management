@@ -18,6 +18,11 @@ export const metadata: Metadata = {
 		'высшее образование Узбекистан',
 		'менеджмент Ташкент',
 	],
+	openGraph: {
+		title: 'Студентам | Менеджмент МГУ Ташкент',
+		description: 'Всё для студентов направления "Менеджмент"',
+		url: 'https://msu-management.uz/students',
+	},
 }
 
 export default function page() {

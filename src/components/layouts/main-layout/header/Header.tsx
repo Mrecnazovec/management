@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react'
 
 export function Header() {
 	const [isOpen, setIsOpen] = useState(false)
+	const [showHeader, setShowHeader] = useState(true)
+	const [lastScrollY, setLastScrollY] = useState(0)
 
 	const pathname = usePathname()
 
@@ -39,8 +41,33 @@ export function Header() {
 		}
 	}, [])
 
+	// === Скролл-логика ===
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY
+			if (currentScrollY > lastScrollY && currentScrollY > 70) {
+				// Скролл вниз
+				setShowHeader(false)
+			} else {
+				// Скролл вверх
+				setShowHeader(true)
+			}
+			setLastScrollY(currentScrollY)
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [lastScrollY])
+
 	return (
-		<header className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger relative h-[90px] max-[390px]:h-[70px]'>
+		<header
+			className={cn(
+				'bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger fixed top-0 left-0 w-full z-30 h-[90px] max-[390px]:h-[70px] transition-transform duration-300',
+				!showHeader && 'transform -translate-y-full'
+			)}
+		>
 			<Container
 				className={cn(
 					'py-1 flex items-center justify-between absolute z-20 left-0 right-0 m-auto max-[390px]:bg-gradient-to-r max-[390px]:from-main max-[390px]:from-25% max-[390px]:to-secondary max-[390px]:to-75%',
@@ -70,9 +97,7 @@ export function Header() {
 					isOpen && 'h-screen delay-0 '
 				)}
 			>
-				<Container
-					className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 ')}
-				>
+				<Container className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 ')}>
 					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px]'>

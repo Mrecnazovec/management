@@ -15,6 +15,11 @@ export const metadata: Metadata = {
 		'академические программы МГУ',
 		'филиал МГУ Ташкент',
 	],
+	openGraph: {
+		title: 'Университет | Менеджмент МГУ Ташкент',
+		description: 'О Ташкентском филиале МГУ и направлении "Менеджмент"',
+		url: 'https://msu-management.uz/university',
+	},
 }
 
 export default function page() {

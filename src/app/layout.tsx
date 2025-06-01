@@ -13,12 +13,44 @@ const interSans = Inter({
 
 export const metadata: Metadata = {
 	title: {
-		absolute: SITE_NAME,
+		default: SITE_NAME,
 		template: `%s | ${SITE_NAME}`,
 	},
 	description: SITE_DESCRIPTION,
 	keywords: SITE_KEYWORDS,
 	authors: SITE_AUTHOR,
+	metadataBase: new URL('https://msu-management.uz'),
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-snippet': -1,
+			'max-image-preview': 'large',
+			'max-video-preview': -1,
+		},
+	},
+	openGraph: {
+		title: SITE_NAME,
+		description: SITE_DESCRIPTION,
+		url: 'https://msu-management.uz',
+		siteName: SITE_NAME,
+		images: [
+			{
+				url: 'https://msu-management.uz/images/logo.svg',
+				alt: SITE_NAME,
+			},
+		],
+		locale: 'ru_RU',
+		type: 'website',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: SITE_NAME,
+		description: SITE_DESCRIPTION,
+		images: ['https://msu-management.uz/images/logo.svg'],
+	},
 }
 
 export default function RootLayout({
@@ -29,36 +61,25 @@ export default function RootLayout({
 	return (
 		<html lang='ru'>
 			<head>
-				<meta property='og:title' content={SITE_NAME} />
-				<meta property='og:description' content={SITE_DESCRIPTION} />
-				<meta property='og:image' content='/images/logo.svg' />
-				<meta property='og:url' content='https:/msu-store.com' />
-				<meta property='og:type' content='website' />
-				<meta name='twitter:card' content='summary_large_image' />
-				<meta name='twitter:title' content={SITE_NAME} />
-				<meta name='twitter:description' content={SITE_DESCRIPTION} />
-				<meta name='twitter:image' content='/images/logo.svg' />
-
 				{/* Yandex Metrika */}
 				<Script id='yandex-metrika' strategy='afterInteractive'>
 					{`
-					(function(m,e,t,r,i,k,a){
-						m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-						m[i].l=1*new Date();
-						for (var j = 0; j < document.scripts.length; j++) {
-							if (document.scripts[j].src === r) { return; }
-						}
-						k=e.createElement(t),a=e.getElementsByTagName(t)[0],
-						k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-					})
-					(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+						(function(m,e,t,r,i,k,a){
+							m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+							m[i].l=1*new Date();
+							for (var j = 0; j < document.scripts.length; j++) {
+								if (document.scripts[j].src === r) { return; }
+							}
+							k=e.createElement(t),a=e.getElementsByTagName(t)[0],
+							k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+						})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-					ym(102155357, "init", {
-						clickmap:true,
-						trackLinks:true,
-						accurateTrackBounce:true,
-						webvisor:true
-					});
+						ym(102155357, "init", {
+							clickmap:true,
+							trackLinks:true,
+							accurateTrackBounce:true,
+							webvisor:true
+						});
 					`}
 				</Script>
 
@@ -67,9 +88,8 @@ export default function RootLayout({
 						<img src='https://mc.yandex.ru/watch/102155357' style={{ position: 'absolute', left: '-9999px' }} alt='' />
 					</div>
 				</noscript>
-				
 			</head>
-			<body className={`${interSans.variable} antialiased`}>
+			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px]`}>
 				<NextTopLoader />
 				<Toaster />
 				{children}
