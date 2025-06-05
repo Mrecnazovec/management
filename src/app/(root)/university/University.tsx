@@ -48,7 +48,8 @@ export function University() {
 
 				<div className='grid grid-cols-3 gap-4'>
 					<Link
-						href={PUBLIC_URL.university('administration')}
+						// href={PUBLIC_URL.university('administration')}
+						href={'https://msu-management.vercel.app/university/administration'}
 						className='sm:aspect-[1200/400] aspect-[810/400] sm:col-span-3 col-span-3 bg-[url("/png/administration.png")] bg-no-repeat bg-cover object-cover relative rounded-2xl'
 					>
 						<div className='flex items-center gap-2 text-white text-xl absolute md:bottom-[30px] bottom-[5px] md:left-[30px] left-[5px] font-semibold font-msu'>
@@ -57,7 +58,8 @@ export function University() {
 						</div>
 					</Link>
 					<Link
-						href={PUBLIC_URL.university('teachers')}
+						// href={PUBLIC_URL.university('teachers')}
+						href={'https://msu-management.vercel.app/university/teachers'}
 						className='aspect-[810/400] sm:col-span-2 col-span-3 bg-[url("/jpg/teachers.jpg")] bg-no-repeat bg-cover object-cover relative rounded-2xl bg-[position:top_20%_center]'
 					>
 						<div className='flex items-center gap-2 text-white text-xl absolute md:bottom-[30px] bottom-[5px] md:left-[30px] left-[5px] font-semibold font-msu'>

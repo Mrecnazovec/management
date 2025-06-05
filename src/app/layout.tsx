@@ -16,8 +16,7 @@ export const metadata: Metadata = {
 		default: SITE_NAME,
 		template: `%s | ${SITE_NAME}`,
 	},
-	description: SITE_DESCRIPTION,
-	keywords: SITE_KEYWORDS,
+
 	authors: SITE_AUTHOR,
 	metadataBase: new URL('https://msu-management.uz'),
 	robots: {
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 		siteName: SITE_NAME,
 		images: [
 			{
-				url: 'https://msu-management.uz/images/logo.svg',
+				url: 'https://msu-management.uz/svg/EconLogoGreen.svg',
 				alt: SITE_NAME,
 			},
 		],
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
 		card: 'summary_large_image',
 		title: SITE_NAME,
 		description: SITE_DESCRIPTION,
-		images: ['https://msu-management.uz/images/logo.svg'],
+		images: ['https://msu-management.uz/svg/EconLogoGreen.svg'],
 	},
 }
 
