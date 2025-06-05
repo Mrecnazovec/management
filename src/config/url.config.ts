@@ -12,10 +12,11 @@ export const PUBLIC_URL = {
 	agreement: (url = '') => PUBLIC_URL.root(`/PDPAgreement/${url ? url : ''}`),
 }
 
-export const DASHBOARD_URL = {
-	root: (url = '') => `/dashboard${url ? url : ''}`,
+export const ADMIN_URL = {
+	root: (url = '') => `/msu-ek123${url ? url : ''}`,
+	auth: (url = '') => `/control-msu-ek123${url ? url : ''}`,
 
-	home: () => DASHBOARD_URL.root('/'),
+	home: () => ADMIN_URL.root('/'),
 }
 
 export const PATH_URL = {

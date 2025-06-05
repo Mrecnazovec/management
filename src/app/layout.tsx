@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME } from '@/constants/seo.constants'
-import { Toaster } from 'react-hot-toast'
-import NextTopLoader from 'nextjs-toploader'
+import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from '@/constants/seo.constants'
 import Script from 'next/script'
+import { Providers } from './providers'
 
 const interSans = Inter({
 	variable: '--font-inter-sans',
@@ -89,9 +88,7 @@ export default function RootLayout({
 				</noscript>
 			</head>
 			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px]`}>
-				<NextTopLoader />
-				<Toaster />
-				{children}
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)
