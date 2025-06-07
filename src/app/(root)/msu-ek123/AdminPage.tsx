@@ -51,11 +51,15 @@ export function AdminPage() {
 			image: <SubjectsIcon />,
 			title: 'Предметы',
 		},
-		{
-			href: ADMIN_URL.moderators(),
-			image: <ModeratorsIcon />,
-			title: 'Модераторы',
-		},
+		...(user?.role === 'admin'
+			? [
+					{
+						href: ADMIN_URL.moderators(),
+						image: <ModeratorsIcon />,
+						title: 'Модераторы',
+					},
+			  ]
+			: []),
 	]
 
 	return (

@@ -6,7 +6,16 @@ import { IUser } from '@/shared/types/user.interface'
 class UserService {
 	async getAll() {
 		const { data } = await axiosWithAuth<IUser[]>({
-			url: API_URL.users(),
+			url: API_URL.users('all'),
+			method: 'GET',
+		})
+
+		return data
+	}
+
+	async getById(id: string) {
+		const { data } = await axiosWithAuth<IUser>({
+			url: API_URL.users(`by-id/${id}`),
 			method: 'GET',
 		})
 
@@ -24,7 +33,7 @@ class UserService {
 
 	async delete(id: string) {
 		const { data } = await axiosWithAuth<IUser>({
-			url: API_URL.users(`/${id}`),
+			url: API_URL.users(`${id}`),
 			method: 'DELETE',
 		})
 
@@ -33,7 +42,7 @@ class UserService {
 
 	async update(id: string, data: IAuthForm) {
 		const { data: updatedUser } = await axiosWithAuth<IUser>({
-			url: API_URL.users(`/${id}`),
+			url: API_URL.users(`${id}`),
 			method: 'PUT',
 			data,
 		})
