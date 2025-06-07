@@ -7,7 +7,7 @@ import Link from 'next/link'
 export function SingleNews() {
 	return (
 		<Container>
-			<h1 className='text-4xl mb-5'>Мы обновили наш сайт</h1>
+			<h1 className='text-3xl mb-10'>Мы обновили наш сайт</h1>
 			<div className='md:w-[40%] md:float-left mr-4 mb-2'>
 				<div className='aspect-[16/9] bg-gradient-to-r from-main to-secondary rounded-2xl mb-4 text-xl flex items-center justify-center'>
 					<Image src={PATH_URL.svg('website.svg')} alt='Новый сайт' width={200} height={200} />

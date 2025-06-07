@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form-element/Form'
 import { ImageUpload } from '@/components/ui/form-element/image-upload/ImageUpload'
 import { Input } from '@/components/ui/form-element/Input'
+import { RichTextEditor } from '@/components/ui/form-element/RichEditor/RichTextEditor'
 import { Heading } from '@/components/ui/Heading'
 import { ConfirmModal } from '@/components/ui/modals/ConfirmModal'
 import { Textarea } from '@/components/ui/Textarea'
@@ -93,7 +94,12 @@ export function SubjectForm({ subject }: SubjectFormProps) {
 							<FormItem className='mt-4'>
 								<FormLabel>Картинка</FormLabel>
 								<FormControl>
-									<ImageUpload isDisabled={isLoadingCreate || isLoadingDelete || isLoadingUpdate} onChange={field.onChange} value={field.value} folder='subjects'/>
+									<ImageUpload
+										isDisabled={isLoadingCreate || isLoadingDelete || isLoadingUpdate}
+										onChange={field.onChange}
+										value={field.value}
+										folder='subjects'
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -121,7 +127,7 @@ export function SubjectForm({ subject }: SubjectFormProps) {
 							<FormItem>
 								<FormLabel>Описание</FormLabel>
 								<FormControl>
-									<Textarea {...field} placeholder='Описание предмета' disabled={isSubmitting} />
+									<RichTextEditor value={field.value} onChange={field.onChange} disabled={isSubmitting} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

@@ -23,6 +23,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 	const management = persons?.filter((p) => p.types?.includes('management') && p.types?.includes('static'))
 
 	const mentors = persons?.filter((p) => p.roles?.includes('mentors'))
+	const teachers = persons?.filter((p) => p.roles?.includes('teachers'))
 
 	const shuffledManagement = useMemo(() => {
 		return [...(management || [])].sort(() => Math.random() - 0.5)
@@ -67,9 +68,20 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 							))}
 						</div>
 					)}
-					{role !== 'mentors' ? (
+					{role === 'mentors' ? (
 						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
-							{others?.map((person, index) => (
+							{mentors?.map((person, index) => (
+								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
+									</div>
+									<p>{person?.name}</p>
+								</Link>
+							))}
+						</div>
+					) : role === 'teachers' ? (
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
+							{teachers?.map((person) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
 									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
@@ -80,7 +92,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 						</div>
 					) : (
 						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
-							{mentors?.map((person) => (
+							{others?.map((person) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
 									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />

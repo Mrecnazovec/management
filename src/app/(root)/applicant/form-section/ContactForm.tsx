@@ -39,7 +39,6 @@ export function ContactForm() {
 		const token = process.env.TELEGRAM_TOKEN
 		const url = `https://api.telegram.org/bot${token}/sendMessage`
 
-		console.log(data)
 
 		const message = `
 Новая заявка:

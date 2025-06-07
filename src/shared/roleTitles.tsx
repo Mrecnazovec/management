@@ -5,6 +5,13 @@ export const roleTitles: Record<string, string> = {
 	union: 'Студ. совет',
 }
 
+export const rolePerson: Record<string, string> = {
+	administration: 'Руководство',
+	mentors: 'Ментор',
+	teachers: 'Преподаватель',
+	union: 'Участник студ. совета',
+}
+
 export const roleDescription: Record<string, string> = {
 	administration:
 		'Руководство филиала, обеспечивающее стратегическое развитие, организацию учебного процесса и взаимодействие с МГУ и другими структурами.',

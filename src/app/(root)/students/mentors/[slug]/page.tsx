@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 export default async function Page({ params }: Props) {
 	const person = await getPerson((await params).slug)
-	const role = (await params).role
+	const role = 'mentors'
 
 	if (!person) return notFound()
 

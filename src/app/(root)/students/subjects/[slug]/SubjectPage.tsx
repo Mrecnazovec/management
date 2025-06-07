@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container'
-import { ADMIN_URL } from '@/config/url.config'
+import { ADMIN_URL, PUBLIC_URL } from '@/config/url.config'
 import { ISubject } from '@/shared/types/subject.interface'
 import { CalendarCheck, BookOpenCheck, ListOrdered, ArrowUp01 } from 'lucide-react'
 import Image from 'next/image'
@@ -48,7 +48,7 @@ export function SubjectPage({ subject }: Props) {
 
 			<div className='mb-14'>
 				<h2 className='text-2xl font-semibold'>Описание:</h2>
-				<p className='text-paragraph text-lg'>{subject.description}</p>
+				<div className='prose prose-lg max-w-none' dangerouslySetInnerHTML={{ __html: subject.description }} />
 			</div>
 
 			{subject.teachers.length > 0 && (
@@ -56,7 +56,7 @@ export function SubjectPage({ subject }: Props) {
 					<h2 className='text-2xl font-semibold mb-4'>Преподаватели:</h2>
 					<div className='grid lg:grid-cols-6 xs:grid-cols-3 grid-cols-2 gap-6'>
 						{subject.teachers?.map((teacher) => (
-							<Link key={teacher.id} href={ADMIN_URL.role('teachers', teacher.slug)}>
+							<Link key={teacher.id} href={PUBLIC_URL.role('teachers', teacher.slug)}>
 								<article className='relative aspect-[3/4] rounded-2xl mb-2'>
 									<Image src={teacher.photo} alt={teacher.name} fill className='object-cover mb-2 rounded-2xl' />
 								</article>
