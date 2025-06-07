@@ -15,7 +15,7 @@ export const MenuSections = [
 		title: 'Студентам',
 		links: [
 			{ href: PUBLIC_URL.students(), label: 'Студентам', bold: true },
-			{ href: PUBLIC_URL.students('plan'), label: 'Учебный план' },
+			{ href: PUBLIC_URL.subjects(), label: 'Учебный план' },
 			{ href: PUBLIC_URL.students('mentors'), label: 'Менторы' },
 			{ href: 'https://t.me/+lrYxgfW-FjExMDgy', label: 'Помощь' },
 			{ href: 'https://msu2006.edupage.org/timetable/', label: 'Расписание', external: true },

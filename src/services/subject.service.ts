@@ -23,7 +23,7 @@ class SubjectService {
 
 	async getOne(slug: string) {
 		const { data } = await axiosClassic<ISubject>({
-			url: API_URL.subjects(`/${slug}`),
+			url: API_URL.subjects(`${slug}`),
 			method: 'GET',
 		})
 
@@ -42,7 +42,7 @@ class SubjectService {
 
 	async update(slug: string, data: ISubjectForm) {
 		const { data: updatedSubject } = await axiosWithAuth<ISubject>({
-			url: API_URL.subjects(`/${slug}`),
+			url: API_URL.subjects(`${slug}`),
 			method: 'PUT',
 			data,
 		})
@@ -52,8 +52,8 @@ class SubjectService {
 
 	async delete(slug: string) {
 		const { data: deletedSubject } = await axiosWithAuth<ISubject>({
-			url: API_URL.subjects(`/${slug}`),
-			method: 'PUT',
+			url: API_URL.subjects(`${slug}`),
+			method: 'DELETE',
 		})
 
 		return deletedSubject

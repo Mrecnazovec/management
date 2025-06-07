@@ -1,6 +1,6 @@
 import { axiosClassic, axiosWithAuth } from '@/api/api.interceptors'
 import { API_URL } from '@/config/api.config'
-import { IPerson, IPersonForm, IPersonUpdate } from '@/shared/types/person.interface'
+import { IPerson, IPersonForm } from '@/shared/types/person.interface'
 
 class PersonService {
 	async getAll() {
@@ -14,7 +14,7 @@ class PersonService {
 
 	async getByRole(role: string) {
 		const { data } = await axiosClassic<IPerson[]>({
-			url: API_URL.persons(`/${role}`),
+			url: API_URL.persons(`${role}`),
 			method: 'GET',
 		})
 
@@ -23,7 +23,7 @@ class PersonService {
 
 	async getOne(slug: string) {
 		const { data } = await axiosClassic<IPerson>({
-			url: API_URL.persons(`/by-slug/${slug}`),
+			url: API_URL.persons(`by-slug/${slug}`),
 			method: 'GET',
 		})
 
@@ -40,9 +40,9 @@ class PersonService {
 		return createdPerson
 	}
 
-	async update(id: string, data: IPersonUpdate) {
+	async update(slug: string, data: IPersonForm) {
 		const { data: updatedPerson } = await axiosWithAuth<IPerson>({
-			url: API_URL.persons(`/${id}`),
+			url: API_URL.persons(`${slug}`),
 			method: 'PUT',
 			data,
 		})
@@ -50,9 +50,9 @@ class PersonService {
 		return updatedPerson
 	}
 
-	async delete(id: string) {
+	async delete(slug: string) {
 		const { data: deletedPerson } = await axiosWithAuth<IPerson>({
-			url: API_URL.persons(`/${id}`),
+			url: API_URL.persons(`${slug}`),
 			method: 'DELETE',
 		})
 

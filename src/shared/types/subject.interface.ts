@@ -7,10 +7,11 @@ export interface ISubjectForm {
 	result: string
 	image: string
 	slug: string
-	courseNumber: number[]
-	semesterNumber: number[]
+	courseNumbers: string[]
+	semesterNumbers: string[]
 }
 
 export interface ISubject extends ISubjectForm {
 	teachers: IPerson[]
+	id: string
 }

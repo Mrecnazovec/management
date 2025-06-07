@@ -4,7 +4,6 @@ export interface ILink {
 	title: string
 	url: string
 	image: string
-	id: string
 }
 
 export interface IPersonForm {
@@ -16,12 +15,6 @@ export interface IPersonForm {
 	types: string[]
 	subjectSlugs: string[]
 	links: ILink[]
-}
-
-export interface IPersonUpdate extends IPersonForm {
-	updatedLinks: ILink[]
-	newLinks: ILink[]
-	deletedLinks: string[]
 }
 
 export interface IPerson extends IPersonForm {
