@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: '*',
 			allow: '/',
-			// disallow: '/private/',
+			disallow: '/msu-ek123/',
 		},
 		sitemap: `${process.env.APP_URL}/sitemap.xml`,
 	}

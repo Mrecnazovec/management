@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container'
-import { DataTag } from '@/components/ui/DataTag'
+import { DateTag } from '@/components/ui/DateTag'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
@@ -96,7 +96,7 @@ export function PDAgreement() {
 					https://www.msu-management.uz/PDPAgreement
 				</Link>
 			</P>
-			<DataTag />
+			<DateTag date='25 мая 2025 года' />
 		</Container>
 	)
 }

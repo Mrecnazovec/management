@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/Button'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/Command'
 import { Container } from '@/components/ui/Container'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form-element/Form'
 import { ImageUpload } from '@/components/ui/form-element/image-upload/ImageUpload'
@@ -8,14 +9,17 @@ import { Input } from '@/components/ui/form-element/Input'
 import { RichTextEditor } from '@/components/ui/form-element/RichEditor/RichTextEditor'
 import { Heading } from '@/components/ui/Heading'
 import { ConfirmModal } from '@/components/ui/modals/ConfirmModal'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { Textarea } from '@/components/ui/Textarea'
 import { useCreatePerson } from '@/hooks/queries/persons/useCreatePerson'
 import { useDeletePerson } from '@/hooks/queries/persons/useDeletePerson'
 import { useUpdatePerson } from '@/hooks/queries/persons/useUpdatePerson'
+import { useGetSubjects } from '@/hooks/queries/subjects/useGetSubjects'
+import { cn } from '@/lib/utils'
 import { IPerson, IPersonForm } from '@/shared/types/person.interface'
-import { Plus, Trash } from 'lucide-react'
+import { Check, ChevronsUpDown, Plus, Trash } from 'lucide-react'
 import { useParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
 interface PersonFormProps {
@@ -29,6 +33,7 @@ export function PersonForm({ person }: PersonFormProps) {
 	const { createPerson, isLoadingCreate } = useCreatePerson(role)
 	const { updatePerson, isLoadingUpdate } = useUpdatePerson(role)
 	const { deletePerson, isLoadingDelete } = useDeletePerson(role)
+	const { subjects, isLoading } = useGetSubjects()
 
 	const title = person ? 'Изменить данные' : 'Добавить человека'
 	const description = person ? 'Изменить данные человека' : 'Добавить нового человека'
@@ -76,6 +81,27 @@ export function PersonForm({ person }: PersonFormProps) {
 		if (person) updatePerson({ slug, data })
 		else createPerson(data)
 	}
+
+	const roleSelector = [
+		{ label: 'Учитель', value: 'teachers' },
+		{ label: 'Руководство', value: 'administration' },
+		{ label: 'Ментор', value: 'mentors' },
+		{ label: 'Студ. совет', value: 'union' },
+	] as const
+
+	const typeSelector = [
+		{ label: 'Статика', value: 'static' },
+		{ label: 'Верхушка', value: 'head' },
+		{ label: 'Главный', value: 'top' },
+		{ label: 'Менеджмент', value: 'management' },
+	] as const
+
+	const subjectSelector = useMemo(() => {
+		return (subjects || []).map((subject) => ({
+			label: subject.title,
+			value: subject.slug,
+		}))
+	}, [subjects])
 
 	return (
 		<Container>
@@ -178,20 +204,46 @@ export function PersonForm({ person }: PersonFormProps) {
 							<FormItem>
 								<FormLabel>Тип</FormLabel>
 								<div className='space-y-2'>
-									{field.value?.map((course, index) => (
+									{field.value?.map((typeField, index) => (
 										<div key={index} className='flex items-center space-x-2'>
-											<FormControl>
-												<Input
-													value={course}
-													onChange={(e) => {
-														const newCourse = [...field.value]
-														newCourse[index] = e.target.value
-														field.onChange(newCourse)
-													}}
-													placeholder='static / head / top'
-													disabled={isLoadingCreate || isLoadingUpdate}
-												/>
-											</FormControl>
+											<Popover>
+												<PopoverTrigger asChild>
+													<FormControl>
+														<Button
+															variant='outline'
+															role='combobox'
+															className={cn('w-[200px] justify-between', !typeField && 'text-muted-foreground')}
+														>
+															{typeSelector.find((type) => type.value === typeField)?.label || 'Выберите тип'}
+															<ChevronsUpDown className='opacity-50 ml-2 h-4 w-4' />
+														</Button>
+													</FormControl>
+												</PopoverTrigger>
+												<PopoverContent className='w-[200px] p-0'>
+													<Command>
+														<CommandInput placeholder='Выберите тип' className='h-9' />
+														<CommandList>
+															<CommandEmpty>Тип не найден</CommandEmpty>
+															<CommandGroup>
+																{typeSelector.map((type) => (
+																	<CommandItem
+																		key={type.value}
+																		value={type.label}
+																		onSelect={() => {
+																			const updatedValues = [...(field.value || [])]
+																			updatedValues[index] = type.value
+																			field.onChange(updatedValues)
+																		}}
+																	>
+																		{type.label}
+																		<Check className={cn('ml-auto h-4 w-4', type.value === typeField ? 'opacity-100' : 'opacity-0')} />
+																	</CommandItem>
+																))}
+															</CommandGroup>
+														</CommandList>
+													</Command>
+												</PopoverContent>
+											</Popover>
 											<Button
 												disabled={isLoadingCreate || isLoadingUpdate}
 												type='button'
@@ -208,7 +260,7 @@ export function PersonForm({ person }: PersonFormProps) {
 										onClick={() => field.onChange([...(field.value || []), ''])}
 										disabled={isLoadingCreate || isLoadingUpdate}
 									>
-										<Plus /> Добавить тип
+										<Plus className='mr-2 h-4 w-4' /> Добавить тип
 									</Button>
 								</div>
 								<FormMessage />
@@ -219,24 +271,51 @@ export function PersonForm({ person }: PersonFormProps) {
 					<FormField
 						control={control}
 						name='roles'
+						rules={{ required: 'Роль обязательна' }}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Роль</FormLabel>
 								<div className='space-y-2'>
-									{field.value?.map((semester, index) => (
+									{field.value?.map((roleField, index) => (
 										<div key={index} className='flex items-center space-x-2'>
-											<FormControl>
-												<Input
-													value={semester}
-													onChange={(e) => {
-														const newSemester = [...field.value]
-														newSemester[index] = e.target.value
-														field.onChange(newSemester)
-													}}
-													placeholder='teachers / administration / mentors / union'
-													disabled={isLoadingCreate || isLoadingUpdate}
-												/>
-											</FormControl>
+											<Popover>
+												<PopoverTrigger asChild>
+													<FormControl>
+														<Button
+															variant='outline'
+															role='combobox'
+															className={cn('w-[200px] justify-between', !roleField && 'text-muted-foreground')}
+														>
+															{roleSelector.find((role) => role.value === roleField)?.label || 'Выберите роль'}
+															<ChevronsUpDown className='opacity-50 ml-2 h-4 w-4' />
+														</Button>
+													</FormControl>
+												</PopoverTrigger>
+												<PopoverContent className='w-[200px] p-0'>
+													<Command>
+														<CommandInput placeholder='Выберите тип' className='h-9' />
+														<CommandList>
+															<CommandEmpty>Роль не найдена</CommandEmpty>
+															<CommandGroup>
+																{roleSelector.map((role) => (
+																	<CommandItem
+																		key={role.value}
+																		value={role.label}
+																		onSelect={() => {
+																			const updatedValues = [...(field.value || [])]
+																			updatedValues[index] = role.value
+																			field.onChange(updatedValues)
+																		}}
+																	>
+																		{role.label}
+																		<Check className={cn('ml-auto h-4 w-4', role.value === roleField ? 'opacity-100' : 'opacity-0')} />
+																	</CommandItem>
+																))}
+															</CommandGroup>
+														</CommandList>
+													</Command>
+												</PopoverContent>
+											</Popover>
 											<Button
 												disabled={isLoadingCreate || isLoadingUpdate}
 												type='button'
@@ -253,7 +332,7 @@ export function PersonForm({ person }: PersonFormProps) {
 										onClick={() => field.onChange([...(field.value || []), ''])}
 										disabled={isLoadingCreate || isLoadingUpdate}
 									>
-										<Plus /> Добавить роль
+										<Plus className='mr-2 h-4 w-4' /> Добавить роль
 									</Button>
 								</div>
 								<FormMessage />
@@ -266,22 +345,44 @@ export function PersonForm({ person }: PersonFormProps) {
 						name='subjectSlugs'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Slug предмета</FormLabel>
+								<FormLabel>Выбрать предмет</FormLabel>
 								<div className='space-y-2'>
-									{field.value?.map((semester, index) => (
+									{field.value?.map((slug, index) => (
 										<div key={index} className='flex items-center space-x-2'>
-											<FormControl>
-												<Input
-													value={semester}
-													onChange={(e) => {
-														const newSemester = [...field.value]
-														newSemester[index] = e.target.value
-														field.onChange(newSemester)
-													}}
-													placeholder='math'
-													disabled={isLoadingCreate || isLoadingUpdate}
-												/>
-											</FormControl>
+											<Popover>
+												<PopoverTrigger asChild>
+													<FormControl>
+														<Button variant='outline' role='combobox' className={cn('w-full justify-between', !slug && 'text-muted-foreground')}>
+															{subjectSelector.find((subject) => subject.value === slug)?.label || 'Выберите тип'}
+															<ChevronsUpDown className='opacity-50 ml-2 h-4 w-4' />
+														</Button>
+													</FormControl>
+												</PopoverTrigger>
+												<PopoverContent className='w-full p-0'>
+													<Command>
+														<CommandInput placeholder='Выберите предмет' className='h-9' />
+														<CommandList>
+															<CommandEmpty>Предмет не найден</CommandEmpty>
+															<CommandGroup>
+																{subjectSelector.map((subject) => (
+																	<CommandItem
+																		key={subject.value}
+																		value={subject.label}
+																		onSelect={() => {
+																			const updatedValues = [...(field.value || [])]
+																			updatedValues[index] = subject.value
+																			field.onChange(updatedValues)
+																		}}
+																	>
+																		{subject.label}
+																		<Check className={cn('ml-auto h-4 w-4', subject.value === slug ? 'opacity-100' : 'opacity-0')} />
+																	</CommandItem>
+																))}
+															</CommandGroup>
+														</CommandList>
+													</Command>
+												</PopoverContent>
+											</Popover>
 											<Button
 												disabled={isLoadingCreate || isLoadingUpdate}
 												type='button'
@@ -298,7 +399,7 @@ export function PersonForm({ person }: PersonFormProps) {
 										onClick={() => field.onChange([...(field.value || []), ''])}
 										disabled={isLoadingCreate || isLoadingUpdate}
 									>
-										<Plus /> Добавить slug предмета
+										<Plus className='mr-2 h-4 w-4' /> Добавить предмет
 									</Button>
 								</div>
 								<FormMessage />

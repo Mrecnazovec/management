@@ -27,7 +27,7 @@ export function UserForm({ user }: UserFormProps) {
 	const { deleteUser, isLoadingDelete } = useDeleteUser()
 
 	const title = user ? 'Изменить модератора' : 'Добавить модератора'
-	const description = user ? 'Изменить модератора модератора' : 'Добавить нового модератора'
+	const description = user ? 'Изменить модератора' : 'Добавить нового модератора'
 	const action = user ? 'Сохранить' : 'Добавить'
 	const userId = user?.id || ''
 

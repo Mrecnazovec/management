@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../Carousel'
+import { Carousel, CarouselContent, CarouselItem } from '../Carousel'
 import { type CarouselApi } from '../Carousel'
 import Link from 'next/link'
 import { PATH_URL, PUBLIC_URL } from '@/config/url.config'
@@ -7,6 +7,7 @@ import Autoplay from 'embla-carousel-autoplay'
 
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import { useGetTopNews } from '@/hooks/queries/news/useGetTopNews'
 
 interface Props {
 	classname?: string
@@ -16,13 +17,16 @@ export function HomeCarousel({ classname }: Props) {
 	const [api, setApi] = React.useState<CarouselApi>()
 	const [current, setCurrent] = React.useState(0)
 	const [count, setCount] = React.useState(0)
+	const { topNews, isLoading } = useGetTopNews()
 
 	React.useEffect(() => {
 		if (!api) {
 			return
 		}
 
-		setCount(api.scrollSnapList().length)
+		if (!isLoading) {
+			setCount(api.scrollSnapList().length)
+		}
 		setCurrent(api.selectedScrollSnap() + 1)
 
 		api.on('select', () => {
@@ -42,22 +46,22 @@ export function HomeCarousel({ classname }: Props) {
 			setApi={setApi}
 		>
 			<CarouselContent className='mb-[25px]'>
-				<CarouselItem>
-					<Link href={PUBLIC_URL.news('new-website')}>
-						<div className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] bg-gradient-to-r from-main to-secondary max-sm:aspect-video rounded-2xl flex items-center justify-center flex-col p-2'>
-							<Image src={PATH_URL.svg('website.svg')} alt='Новый вебсайт' width={300} height={300} className='h-[80%]' />
-							<p className='text-white font-semibold xs:text-xl text-center	'>Глобальное обновление сайта</p>
-						</div>
-					</Link>
-				</CarouselItem>
-				<CarouselItem>
-					<Link
-						href='https://msu-store.com'
-						className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden block'
-					>
-						<Image src={PATH_URL.svg('msustore.svg')} alt='Магазин MSU-STORE' width={1440} height={720} className='h-full object-cover' />
-					</Link>
-				</CarouselItem>
+				{isLoading
+					? Array.from({ length: 3 }).map((_, index) => (
+							<CarouselItem key={index}>
+								<div className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden bg-muted animate-pulse' />
+							</CarouselItem>
+					  ))
+					: topNews?.map((topNew) => (
+							<CarouselItem key={topNew.id}>
+								<Link
+									href={PUBLIC_URL.news(topNew.slug)}
+									className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden block'
+								>
+									<Image src={topNew.preview} alt={topNew.title} width={1440} height={720} className='h-full object-cover' />
+								</Link>
+							</CarouselItem>
+					  ))}
 			</CarouselContent>
 			<div className='flex items-center gap-5'>
 				{Array.from({ length: count }).map((_, index) => (

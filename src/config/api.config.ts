@@ -8,4 +8,6 @@ export const API_URL = {
 	subjects: (url = '') => API_URL.root(`/subjects/${url}`),
 	persons: (url = '') => API_URL.root(`/persons/${url}`),
 	files: (url = '') => API_URL.root(`/files/${url}`),
+	news: (url = '') => API_URL.root(`/news/${url}`),
+	getNews: (limit?: number) => API_URL.root(`/news?limit=${limit}`),
 }

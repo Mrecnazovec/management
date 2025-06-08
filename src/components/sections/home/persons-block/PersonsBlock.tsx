@@ -49,7 +49,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 					{(role === 'administration' || role === 'union') && (
 						<div className='grid lg:grid-cols-5 sm:grid-cols-3 mb-5'>
 							<Link href={PUBLIC_URL.role(role, topLevel?.slug)} className='lg:col-start-3 sm:col-start-2'>
-								<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+								<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 									<Image src={topLevel?.photo || ''} fill alt='test' className='object-cover' />
 								</div>
 								<p>{topLevel?.name}</p>
@@ -57,10 +57,10 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 						</div>
 					)}
 					{role == 'administration' && (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-10'>
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-10'>
 							{headLevel?.map((person, index) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)} className={`${colStartClasses[index + 1]}`}>
-									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>
 									<p>{person?.name}</p>
@@ -69,10 +69,10 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 						</div>
 					)}
 					{role === 'mentors' ? (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-14'>
 							{mentors?.map((person, index) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
-									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>
 									<p>{person?.name}</p>
@@ -80,10 +80,10 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 							))}
 						</div>
 					) : role === 'teachers' ? (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-14'>
 							{teachers?.map((person) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
-									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>
 									<p>{person?.name}</p>
@@ -91,10 +91,10 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 							))}
 						</div>
 					) : (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-14'>
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-14'>
 							{others?.map((person) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
-									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>
 									<p>{person?.name}</p>
@@ -107,7 +107,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 					{role === 'union' && managementTop && (
 						<div className='grid lg:grid-cols-5 sm:grid-cols-3 mb-5'>
 							<Link href={PUBLIC_URL.role(role, managementTop?.slug)} className='lg:col-start-3 sm:col-start-2'>
-								<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+								<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 									<Image src={managementTop?.photo || ''} fill alt='test' className='object-cover' />
 								</div>
 								<p>{managementTop?.name}</p>
@@ -115,10 +115,10 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 						</div>
 					)}
 					{role == 'union' && shuffledManagement.length > 0 && (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 sm:gap-10 gap-5 mb-10'>
+						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-10'>
 							{shuffledManagement?.map((person, index) => (
 								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)} className={`${colStartClasses[index + 1]}`}>
-									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl'>
+									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>
 									<p>{person?.name}</p>

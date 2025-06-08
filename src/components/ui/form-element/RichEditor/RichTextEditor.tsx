@@ -5,6 +5,9 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import TextAlign from '@tiptap/extension-text-align'
 import Highlight from '@tiptap/extension-highlight'
+import Link from '@tiptap/extension-link'
+import ResizeImage from 'tiptap-extension-resize-image'
+import Youtube from '@tiptap/extension-youtube'
 import { useEffect } from 'react'
 import MenuBar from './MenuBar'
 
@@ -33,6 +36,30 @@ export function RichTextEditor({ value, onChange, disabled }: RichTextEditorProp
 				types: ['heading', 'paragraph'],
 			}),
 			Highlight,
+			Link.configure({
+				openOnClick: false,
+				autolink: true,
+				linkOnPaste: true,
+				HTMLAttributes: {
+					class: 'text-main hover:text-main/80 transition-[color]',
+				},
+			}),
+			ResizeImage.configure({
+				allowBase64: true,
+				HTMLAttributes: {
+					class: 'rounded-xl cursor-default',
+				},
+			}),
+			Youtube.configure({
+				inline: false,
+				width: 640,
+				height: 360,
+				allowFullscreen: true,
+				HTMLAttributes:{
+					class:'max-w-full aspect-video h-auto'
+				},
+				
+			}),
 		],
 		content: value,
 		editorProps: {

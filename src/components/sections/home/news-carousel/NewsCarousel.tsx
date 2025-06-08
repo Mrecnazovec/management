@@ -2,14 +2,15 @@ import React from 'react'
 
 import { type CarouselApi } from '@/components/ui/Carousel'
 import Link from 'next/link'
-import { PATH_URL, PUBLIC_URL } from '@/config/url.config'
+import { PUBLIC_URL } from '@/config/url.config'
 import Autoplay from 'embla-carousel-autoplay'
 
 import { cn } from '@/lib/utils'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/Carousel'
 import { Button } from '@/components/ui/Button'
-import Image from 'next/image'
 import { NewsCard } from '@/components/cards/NewsCard'
+import { useGetNews } from '@/hooks/queries/news/useGetNews'
+import { NewsCardSkeletonCarousel } from '@/components/cards/NewsCardSkeleton'
 
 interface Props {
 	classname?: string
@@ -19,13 +20,16 @@ export function NewsCarousel({ classname }: Props) {
 	const [api, setApi] = React.useState<CarouselApi>()
 	const [current, setCurrent] = React.useState(0)
 	const [count, setCount] = React.useState(0)
+	const { posts, isLoading } = useGetNews()
 
 	React.useEffect(() => {
 		if (!api) {
 			return
 		}
 
-		setCount(api.scrollSnapList().length)
+		if (!isLoading) {
+			setCount(api.scrollSnapList().length)
+		}
 		setCurrent(api.selectedScrollSnap() + 1)
 
 		api.on('select', () => {
@@ -45,9 +49,15 @@ export function NewsCarousel({ classname }: Props) {
 			setApi={setApi}
 		>
 			<CarouselContent className='mb-6 pb-6'>
-				<CarouselItem className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
-					<NewsCard />
-				</CarouselItem>
+				{isLoading ? (
+					<NewsCardSkeletonCarousel />
+				) : (
+					posts?.map((post) => (
+						<CarouselItem key={post.id} className='md:basis-1/3 sm:basis-1/2 basis-1/1'>
+							<NewsCard post={post} />
+						</CarouselItem>
+					))
+				)}
 			</CarouselContent>
 			<div className='border-b-2 border-b-paragraph/30 mb-6'></div>
 			<div className='flex items-center gap-5 mb-4'>

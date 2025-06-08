@@ -3,6 +3,8 @@ import { NewsPage } from './News'
 import { PUBLIC_URL } from '@/config/url.config'
 import { Bread } from '@/components/ui/Breadcrumb/Bread'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
 	title: 'Новости',
 	description:

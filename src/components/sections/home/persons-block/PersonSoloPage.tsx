@@ -13,15 +13,14 @@ interface PersonSoloPageProps {
 
 export function PersonSoloPage({ person }: PersonSoloPageProps) {
 	return (
-		<Container>
+		<Container className='lg:min-h-[800px] sm:min-h-[500px]'>
 			<h1 className='text-3xl mb-10'>{person.name}</h1>
 
-			<div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8 mb-14'>
-				<div className='relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md'>
+			<div className='mb-14 clearfix'>
+				<div className='relative aspect-[3/4] md:w-[30%] sm:w-[40%] w-full rounded-2xl overflow-hidden shadow-md sm:float-left mr-16 mb-4'>
 					<Image src={person.photo} alt={person.name} fill className='object-cover' sizes='(max-width: 768px) 100vw, 50vw' priority />
 				</div>
-				<div className='lg:col-span-3 md:col-span-2 space-y-4'>
-					<div className='prose prose-lg max-w-none' dangerouslySetInnerHTML={{ __html: person.bio }} />
+				<div className='space-y-4'>
 					<p className='flex flex-wrap gap-x-2'>
 						{person.roles.map((role, index) => (
 							<span key={role} className='after:content-[","] last:after:content-none'>
@@ -31,10 +30,12 @@ export function PersonSoloPage({ person }: PersonSoloPageProps) {
 							</span>
 						))}
 					</p>
+					<div className='prose max-w-none' dangerouslySetInnerHTML={{ __html: person.bio }} />
 				</div>
 			</div>
+
 			{person.subjects.length > 0 && <h2 className='text-2xl mb-10'>Предметы:</h2>}
-			<div className='grid grid-cols-5 gap-4 mb-10'>
+			<div className='grid md:grid-cols-4 grid-cols-2 gap-4 mb-10'>
 				{person.subjects?.map((subject) => (
 					<Link key={subject.slug} href={PUBLIC_URL.subjects(subject.slug)}>
 						<article className='relative aspect-[16/9] rounded-2xl mb-2'>
@@ -44,8 +45,9 @@ export function PersonSoloPage({ person }: PersonSoloPageProps) {
 					</Link>
 				))}
 			</div>
+
 			{person.links.length > 0 && <h2 className='text-2xl mb-10'>Ссылки:</h2>}
-			<div className='grid grid-cols-5 gap-4'>
+			<div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
 				{person.links?.map((link, index) => (
 					<Link key={index} href={link.url} target='_blank'>
 						<article className='relative aspect-[16/9] rounded-2xl mb-2'>
