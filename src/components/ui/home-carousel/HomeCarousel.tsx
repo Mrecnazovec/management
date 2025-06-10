@@ -24,9 +24,7 @@ export function HomeCarousel({ classname }: Props) {
 			return
 		}
 
-		if (!isLoading) {
-			setCount(api.scrollSnapList().length)
-		}
+		setCount(api.scrollSnapList().length)
 		setCurrent(api.selectedScrollSnap() + 1)
 
 		api.on('select', () => {

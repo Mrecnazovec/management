@@ -20,16 +20,14 @@ export function NewsCarousel({ classname }: Props) {
 	const [api, setApi] = React.useState<CarouselApi>()
 	const [current, setCurrent] = React.useState(0)
 	const [count, setCount] = React.useState(0)
-	const { posts, isLoading } = useGetNews()
+	const { posts, isLoading } = useGetNews(10)
 
 	React.useEffect(() => {
 		if (!api) {
 			return
 		}
 
-		if (!isLoading) {
-			setCount(api.scrollSnapList().length)
-		}
+		setCount(api.scrollSnapList().length)
 		setCurrent(api.selectedScrollSnap() + 1)
 
 		api.on('select', () => {
