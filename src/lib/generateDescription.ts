@@ -1,10 +1,10 @@
 export function stripHtml(html: string): string {
-	return (
-		html
-			.replace(/<[^>]*>?/gm, '') // удаляет все теги
-			.replace(/\s+/g, ' ') // нормализует пробелы
-			.trim()
-			.slice(0, 200)
-			.trim() + '...'
-	)
+	const plain = html
+		.replace(/<[^>]*>?/gm, '')
+		.replace(/\s+/g, ' ')
+		.trim()
+
+	if (plain.length <= 250) return plain
+
+	return plain.slice(0, 250).trim() + '...'
 }
