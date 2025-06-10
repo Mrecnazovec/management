@@ -29,26 +29,6 @@ export const metadata: Metadata = {
 			'max-video-preview': -1,
 		},
 	},
-	openGraph: {
-		title: SITE_NAME,
-		description: SITE_DESCRIPTION,
-		url: 'https://msu-management.uz',
-		siteName: SITE_NAME,
-		images: [
-			{
-				url: 'https://msu-management.uz/svg/EconLogoGreen.svg',
-				alt: SITE_NAME,
-			},
-		],
-		locale: 'ru_RU',
-		type: 'website',
-	},
-	twitter: {
-		card: 'summary_large_image',
-		title: SITE_NAME,
-		description: SITE_DESCRIPTION,
-		images: ['https://msu-management.uz/svg/EconLogoGreen.svg'],
-	},
 }
 
 export default function RootLayout({

@@ -23,7 +23,7 @@ export function RolePage({ role }: RolePageProps) {
 					<Button variant='main'>Добавить</Button>
 				</Link>
 			</div>
-			<div className='grid grid-cols-6 gap-4'>
+			<div className='grid lg:grid-cols-6 sm:grid-cols-3 grid-cols-2 gap-4'>
 				{isLoading
 					? Array.from({ length: 12 }).map((_, i) => (
 							<div key={i} className='animate-pulse'>

@@ -19,7 +19,7 @@ export function NewsControl() {
 					<Button variant='main'>Добавить</Button>
 				</Link>
 			</div>
-			<div className='grid grid-cols-3 gap-4'>
+			<div className='grid sm:grid-cols-3 gap-4'>
 				{isLoading
 					? Array.from({ length: 12 }).map((_, i) => (
 							<div key={i} className='animate-pulse'>
