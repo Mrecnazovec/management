@@ -170,7 +170,7 @@ export function PersonForm({ person }: PersonFormProps) {
 					<FormField
 						control={control}
 						name='slug'
-						rules={{ required: 'Slug обязателен' }}
+						// rules={{ required: 'Slug обязателен' }}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Slug</FormLabel>

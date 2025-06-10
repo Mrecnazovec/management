@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { PUBLIC_URL } from '@/config/url.config'
 import { useMemo } from 'react'
 import { PersonBlockSkeleton } from './PersonBlockSkeleton'
+import { notFound } from 'next/navigation'
 
 interface PersonsBlockProps {
 	persons: IPerson[] | undefined
@@ -14,7 +15,13 @@ interface PersonsBlockProps {
 }
 
 export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
-	const topLevel = persons?.find((p) => (p.types?.includes('top') && p.roles?.includes('administration')) || p.roles?.includes('union'))
+	if ((!isLoading && persons?.length === 0) || (!isLoading && !persons)) return notFound()
+
+	const topLevel = persons?.find(
+		(p) =>
+			(p.types?.includes('top') && p.roles?.includes('administration')) ||
+			(p.roles?.includes('union') && p.types?.includes('top') && !p.types?.includes('management'))
+	)
 
 	const headLevel = persons?.filter((p) => p.types?.includes('head') && p.roles?.includes('administration'))
 
@@ -46,7 +53,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 				<PersonBlockSkeleton role={role} />
 			) : (
 				<div>
-					{(role === 'administration' || role === 'union') && (
+					{((role === 'administration' && topLevel) || (role === 'union' && topLevel)) && (
 						<div className='grid lg:grid-cols-5 sm:grid-cols-3 mb-5'>
 							<Link href={PUBLIC_URL.role(role, topLevel?.slug)} className='lg:col-start-3 sm:col-start-2'>
 								<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
@@ -115,9 +122,9 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 						</div>
 					)}
 					{role == 'union' && shuffledManagement.length > 0 && (
-						<div className='grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-4 mb-10'>
+						<div className='grid lg:grid-cols-5 sm:grid-cols-4 grid-cols-2 gap-4 mb-10'>
 							{shuffledManagement?.map((person, index) => (
-								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)} className={`${colStartClasses[index + 1]}`}>
+								<Link key={person.slug} href={PUBLIC_URL.role(role, person?.slug)}>
 									<div className='relative overflow-hidden aspect-[3/4] rounded-2xl mb-2'>
 										<Image src={person?.photo || ''} fill alt='test' className='object-cover' />
 									</div>

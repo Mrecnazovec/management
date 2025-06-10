@@ -133,7 +133,7 @@ export function NewForm({ post }: NewFormProps) {
 					<FormField
 						control={control}
 						name='slug'
-						rules={{ required: 'Slug обязателен' }}
+						// rules={{ required: 'Slug обязателен' }}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Имя</FormLabel>
