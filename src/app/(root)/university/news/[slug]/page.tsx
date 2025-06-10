@@ -4,6 +4,7 @@ import { PUBLIC_URL } from '@/config/url.config'
 import { Bread } from '@/components/ui/Breadcrumb/Bread'
 import { newService } from '@/services/new.service'
 import { notFound } from 'next/navigation'
+import { stripHtml } from '@/lib/generateDescription'
 
 export const revalidate = 60
 
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 	return {
 		title: post.title,
-		description: post.text,
+		description: stripHtml(post.text).slice(0, 50),
 	}
 }
 

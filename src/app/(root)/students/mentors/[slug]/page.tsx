@@ -5,6 +5,7 @@ import { PUBLIC_URL } from '@/config/url.config'
 import { Bread } from '@/components/ui/Breadcrumb/Bread'
 import { roleTitles } from '@/shared/roleTitles'
 import { PersonBioPage } from './PersonBioPage'
+import { stripHtml } from '@/lib/generateDescription'
 
 export const revalidate = 60
 
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 	return {
 		title: person.name,
-		description: person.bio,
+		description: stripHtml(person.bio).slice(0, 50),
 	}
 }
 

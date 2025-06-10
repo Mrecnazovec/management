@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { SubjectPage } from './SubjectPage'
 import { PUBLIC_URL } from '@/config/url.config'
 import { Bread } from '@/components/ui/Breadcrumb/Bread'
+import { stripHtml } from '@/lib/generateDescription'
 
 export const revalidate = 60
 
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 	return {
 		title: subject.title,
-		description: subject.description,
+		description: stripHtml(subject.description).slice(0, 50),
 	}
 }
 
