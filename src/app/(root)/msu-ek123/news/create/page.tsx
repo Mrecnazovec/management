@@ -6,7 +6,7 @@ import { Bread } from '@/components/ui/Breadcrumb/Bread'
 import { CreateNew } from './CreateNew'
 
 export const metadata: Metadata = {
-	title: 'Добавить модератора',
+	title: 'Добавить новость',
 	...NO_INDEX_PAGE,
 }
 

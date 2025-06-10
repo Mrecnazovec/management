@@ -19,7 +19,7 @@ export const SubjectsBlock = ({ courseNumber, semesterNumber, isAdmin }: Props) 
 			<h2 className='text-xl font-semibold mb-4'>
 				{courseNumber} курс, {semesterNumber} семестр
 			</h2>
-			<div className='grid grid-cols-5 gap-4'>
+			<div className='grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4'>
 				{isLoading
 					? Array.from({ length: 5 }).map((_, i) => (
 							<div key={i} className='animate-pulse'>
