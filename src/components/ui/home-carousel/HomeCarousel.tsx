@@ -45,7 +45,7 @@ export function HomeCarousel({ classname }: Props) {
 		>
 			<CarouselContent className='mb-[25px]'>
 				{isLoading
-					? Array.from({ length: 3 }).map((_, index) => (
+					? Array.from({ length: 5 }).map((_, index) => (
 							<CarouselItem key={index}>
 								<div className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden bg-muted animate-pulse' />
 							</CarouselItem>
