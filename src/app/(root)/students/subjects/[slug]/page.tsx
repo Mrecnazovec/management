@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
 
 	return {
 		title: subject.title,
-		description: stripHtml(subject.description).slice(0, 50),
+		description: stripHtml(subject.description).slice(0, 150),
 	}
 }
 
