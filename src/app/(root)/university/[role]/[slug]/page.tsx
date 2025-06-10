@@ -11,9 +11,14 @@ export const revalidate = 60
 export async function generateStaticParams() {
 	const persons = await personService.getAll()
 
-	return persons.map((person) => ({
-		slug: person.slug,
-	}))
+	const params = persons.flatMap((person) =>
+		person.roles.map((role) => ({
+			role,
+			slug: person.slug,
+		}))
+	)
+
+	return params
 }
 
 async function getPerson(slug: string) {

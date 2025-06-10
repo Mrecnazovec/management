@@ -9,7 +9,7 @@ import { PersonBioPage } from './PersonBioPage'
 export const revalidate = 60
 
 export async function generateStaticParams() {
-	const persons = await personService.getAll()
+	const persons = await personService.getByRole('mentors')
 
 	return persons.map((person) => ({
 		slug: person.slug,
