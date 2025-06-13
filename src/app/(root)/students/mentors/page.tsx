@@ -19,7 +19,7 @@ export default function Page() {
 		},
 		{
 			title: 'Студентам',
-			link: PUBLIC_URL.university(),
+			link: PUBLIC_URL.students(),
 		},
 		{
 			title: 'Менторы',
