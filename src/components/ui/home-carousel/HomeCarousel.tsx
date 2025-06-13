@@ -54,9 +54,12 @@ export function HomeCarousel({ classname }: Props) {
 							<CarouselItem key={topNew.id}>
 								<Link
 									href={PUBLIC_URL.news(topNew.slug)}
-									className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden block'
+									className='w-full xl:h-[380px] lg:h-[310px] sm:h-[280px] max-sm:aspect-video rounded-2xl overflow-hidden block relative'
 								>
 									<Image src={topNew.preview} alt={topNew.title} width={1440} height={720} className='h-full object-cover' />
+									<div className='absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/50 to-transparent'>
+										<p className='line-clamp-2 text-white'>{topNew.title}</p>
+									</div>
 								</Link>
 							</CarouselItem>
 					  ))}

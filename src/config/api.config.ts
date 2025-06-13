@@ -10,4 +10,6 @@ export const API_URL = {
 	files: (url = '') => API_URL.root(`/files/${url}`),
 	news: (url = '') => API_URL.root(`/news/${url}`),
 	getNews: (limit?: number) => API_URL.root(`/news?limit=${limit}`),
+
+	telegram: () => API_URL.root(`/telegram/send`),
 }

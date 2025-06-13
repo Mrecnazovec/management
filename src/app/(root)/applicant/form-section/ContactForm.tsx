@@ -9,14 +9,9 @@ import { Checkbox } from '@/components/ui/Checkbox'
 import { validPhone } from '@/shared/regex'
 import Link from 'next/link'
 import { PUBLIC_URL } from '@/config/url.config'
-
-interface IContactFormInput {
-	name: string
-	tel: string
-	telegram: string
-	status: string
-	agreed: boolean
-}
+import { API_URL } from '@/config/api.config'
+import { IContactFormInput } from '@/shared/types/telegram.interface'
+import { telegramService } from '@/services/telegram.service'
 
 export function ContactForm() {
 	const form = useForm<IContactFormInput>({
@@ -34,40 +29,15 @@ export function ContactForm() {
 
 	const agreed = form.watch('agreed')
 
-	const sendToTelegram = async (data: IContactFormInput) => {
-		const chatId = process.env.CHAT_ID
-		const token = process.env.TELEGRAM_TOKEN
-		const url = `https://api.telegram.org/bot${token}/sendMessage`
-
-
-		const message = `
-Новая заявка:
-Имя: ${data.name}
-Телефон: ${data.tel}
-Телеграм: ${data.telegram}
-Статус: ${data.status}
-Согласие на обработку: ${data.agreed ? 'Да' : 'Нет'}
-`
-
-		try {
-			await axios.post(url, {
-				chat_id: chatId,
-				text: message,
-				parse_mode: 'HTML',
-			})
-			toast.success('Сообщение отправлено')
-			form.reset()
-		} catch (error) {
-			toast.error('Ошибка при отправке')
-		}
-	}
-
 	const onSubmit: SubmitHandler<IContactFormInput> = (data) => {
 		if (!data.agreed) {
 			toast.error('Необходимо согласие на обработку персональных данных')
 			return
 		}
-		sendToTelegram(data)
+		telegramService.sendMessage(data)
+
+		toast.success('Заявка отправлена!')
+		form.reset()
 	}
 
 	return (

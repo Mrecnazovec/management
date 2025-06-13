@@ -56,8 +56,8 @@ export function Applicant() {
 					className='aspect-[16/9] rounded-2xl object-cover lg:max-w-[40%]'
 				/>
 				<p className='lg:max-w-[560px] leading-[38px] text-xl'>
-					Сроки приёма документов на обучение в 2025/2026 учебном году — с 20 июня по 15 июля 2025 года. <br /> <br /> Списки поступающих, успешно
-					прошедших вступительные испытания, будут опубликованы не позднее 20 августа 2025 года.
+					Сроки приёма документов на обучение в 2025/2026 учебном году — с 20 июня c 10:00 по 10 июля 2025 года. <br /> <br /> Списки поступающих,
+					успешно прошедших вступительные испытания, будут опубликованы не позднее 20 августа 2025 года.
 				</p>
 			</div>
 			<div>
@@ -68,6 +68,12 @@ export function Applicant() {
 					</Li>
 					<Li>лично в приемную комиссию Филиала МГУ в городе Ташкенте.</Li>
 				</ul>
+				<A
+					className='mb-4 block'
+					href='https://msu.dvaoblaka.ru/media/2025/06/684ae19e33e1f_График%20работы%20приёмной%20комиссии%20Филиала%20МГУ-2025.pdf'
+				>
+					График работы приемной комиссии с 20 июня по 10 июля 2025 года.
+				</A>
 				<p className='text-xl font-semibold mb-4'>
 					Памятка абитуриенту для подачи заявления через электронную информационную систему МГУ – webanketa.msu.ru (
 					<A href='https://msu.dvaoblaka.ru/media/2022/06/62b6d8e9b00b6_Памятка%20по%20web-anketa.pdf'>скачать</A>)
@@ -82,7 +88,7 @@ export function Applicant() {
 				</A>
 				<P>Контрольные цифры приема на 2025-2026 учебный год:</P>
 				<Span className='mb-4 block'>50 мест, в том числе 10 мест за счет государственного бюджета.</Span>
-				<P className='mb-4'>Прием документов – с 20 июня по 15 июля.</P>
+				<P className='mb-4'>Прием документов – с 20 июня по 10 июля.</P>
 				<Span>Начало всех вступительных испытаний в 9:00.</Span>
 				<Span>
 					Место проведение вступительных испытаний:{' '}
@@ -96,6 +102,13 @@ export function Applicant() {
 						100060, Узбекистан, Ташкент, пр. Амира Темура дом 22.
 					</A>
 				</Span>
+				<Image
+					src={PATH_URL.jpg('schedule-exams.jpg')}
+					alt='Расписание вступительных экзаменов'
+					width={800}
+					height={500}
+					className='max-w-full h-auto object-cover mx-auto mb-4'
+				/>
 				<P>
 					<span id='docs'>Перечень необходимых документов:</span>
 				</P>
@@ -167,15 +180,18 @@ export function Applicant() {
 				<Span>
 					Необходимо отправить все отсканированные вышеперечисленные документы на почту <A href='mailto:exam@msu.uz'>exam@msu.uz</A>
 				</Span>
-				<Span className='font-semibold mb-14'>
+				<Span className='font-semibold mb-4'>
 					Перевод в Филиал МГУ в городе Ташкенте проводится с учетом <span className='text-danger'>результатов аттестационных испытаний</span>.
+				</Span>
+				<Span className='font-semibold mb-14'>
+					Дата аттестационного испытания : <span className='text-danger'>28 июля 2025 г.</span>.
 				</Span>
 				<P className='font-semibold'>
 					Стоимость обучения на платно-контрактной основе в Филиале МГУ имени М.В. Ломоносова в г. Ташкенте на 2025-2026 учебный год составляет
 				</P>
 				<ul className='mb-14'>
-					<Li>36 400 000 сум (без стипендии) для граждан Республики Узбекистан.</Li>
-					<Li>36 400 000 сум (без стипендии) для иностранных граждан.</Li>
+					<Li>39 900 000 сум (без стипендии) для граждан Республики Узбекистан.</Li>
+					<Li>43 700 000 сум (без стипендии) для иностранных граждан.</Li>
 				</ul>
 				<P className='font-semibold'>Информация о консультации к вступительным экзаменам</P>
 				<Span>
@@ -187,15 +203,15 @@ export function Applicant() {
 				<ul className='mb-14'>
 					<Li>
 						Правила приема в МГУ имени М.В. Ломоносова в 2025 году (
-						<A href='https://msu.dvaoblaka.ru/media/2024/06/665d8972645ea_rules-2024.pdf'>скачать</A>)
+						<A href='https://msu.dvaoblaka.ru/media/2025/06/684ae2c399e43_rules-2025.pdf'>скачать</A>)
 					</Li>
 					<Li>
 						{' '}
-						Правила подачи и рассмотрения апелляций (<A href='https://msu.dvaoblaka.ru/media/2022/06/62af7fb00c94c_appeal-2022.pdf'>скачать</A>)
+						Правила подачи и рассмотрения апелляций (<A href='https://msu.dvaoblaka.ru/media/2025/06/684ae2df72105_apeal-2025.pdf'>скачать</A>)
 					</Li>
 					<Li>
 						Состав приемной комиссии Филиала МГУ в городе Ташкенте (
-						<A href='https://msu.dvaoblaka.ru/media/2024/06/665d8dc2a79c5_%D0%A1%D0%9E%D0%A1%D0%A2%D0%90%D0%92%20%D0%9F%D0%9A-2024.pdf'>скачать</A>)
+						<A href='https://msu.dvaoblaka.ru/media/2025/06/684ae2fb026b4_СОСТАВ%20ПК-2025.pdf'>скачать</A>)
 					</Li>
 				</ul>
 				<Span className='font-semibold text-black'>

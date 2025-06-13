@@ -89,7 +89,7 @@ export function Header() {
 				</Link>
 
 				<div className='flex items-center'>
-					{user && (
+					{!isLoading && user && (
 						<Link href={ADMIN_URL.home()} className='mr-4'>
 							<Button type='button' size={'icon'} variant={'link'}>
 								<UserCog2 className='text-white size-6' />
