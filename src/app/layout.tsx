@@ -39,6 +39,7 @@ export default function RootLayout({
 	return (
 		<html lang='ru'>
 			<head>
+				<meta name="yandex-verification" content="3acc2482785d4638" />
 				{/* Yandex Metrika */}
 				<Script id='yandex-metrika' strategy='afterInteractive'>
 					{`
