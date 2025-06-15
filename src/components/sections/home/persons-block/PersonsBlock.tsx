@@ -47,8 +47,7 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 	const colStartClasses = ['lg:col-start-1', 'lg:col-start-2', 'lg:col-start-3', 'lg:col-start-4', 'lg:col-start-5', 'lg:col-start-6']
 
 	return (
-		<Container>
-			<h1 className='text-3xl mb-14'>{roleTitles[role]}</h1>
+		<>
 			{isLoading ? (
 				<PersonBlockSkeleton role={role} />
 			) : (
@@ -135,6 +134,6 @@ export function PersonsBlock({ persons, isLoading, role }: PersonsBlockProps) {
 					)}
 				</div>
 			)}
-		</Container>
+		</>
 	)
 }

@@ -37,7 +37,7 @@ export function UserForm({ user }: UserFormProps) {
 			name: user?.name || '',
 			password: user?.password || '',
 			login: user?.login || '',
-			role: user?.role || 'Модератор',
+			role: user?.role || 'moderator',
 		},
 	})
 
@@ -47,7 +47,7 @@ export function UserForm({ user }: UserFormProps) {
 				name: user?.name || '',
 				password: user?.password || '',
 				login: user?.login || '',
-				role: user?.role || 'Модератор',
+				role: user?.role || 'moderator',
 			})
 		}
 	}, [user, form.reset])
@@ -80,6 +80,20 @@ export function UserForm({ user }: UserFormProps) {
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
 					<FormField
 						control={control}
+						name='login'
+						rules={{ required: 'Логин обязателен' }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Логин</FormLabel>
+								<FormControl>
+									<Input {...field} placeholder='Логин' disabled={isSubmitting} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={control}
 						name='name'
 						rules={{ required: 'Имя обязательно' }}
 						render={({ field }) => (
@@ -98,7 +112,7 @@ export function UserForm({ user }: UserFormProps) {
 						rules={{ required: 'Пароль обязателен' }}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Имя</FormLabel>
+								<FormLabel>Пароль</FormLabel>
 								<FormControl>
 									<Input {...field} placeholder='Пароль' disabled={isSubmitting} />
 								</FormControl>
@@ -112,7 +126,7 @@ export function UserForm({ user }: UserFormProps) {
 						rules={{ required: 'Роль обязательна' }}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Имя</FormLabel>
+								<FormLabel>Роль</FormLabel>
 								<FormControl>
 									<Input {...field} placeholder='moderator / admin' disabled={isSubmitting} />
 								</FormControl>

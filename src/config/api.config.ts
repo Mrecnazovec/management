@@ -11,5 +11,9 @@ export const API_URL = {
 	news: (url = '') => API_URL.root(`/news/${url}`),
 	getNews: (limit?: number) => API_URL.root(`/news?limit=${limit}`),
 
+	edupage: (url = '') => API_URL.root(`/edupage/${url}`),
+	fetch: (datefrom = '', dateto = '') => API_URL.root(`/edupage/fetch?datefrom=${datefrom}&dateto=${dateto}`),
+	timetable: (datefrom = '', dateto = '', id = '') => API_URL.root(`/edupage/timetable?datefrom=${datefrom}&dateto=${dateto}&id=${id}`),
+
 	telegram: () => API_URL.root(`/telegram/send`),
 }
