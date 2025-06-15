@@ -1,14 +1,23 @@
-import { Skeleton } from "@/components/ui/Skeleton";
+import { Skeleton } from '@/components/ui/Skeleton'
 
 export function LoaderSkeleton() {
 	return (
 		<>
 			<div className='hidden md:block space-y-2'>
+				<Skeleton className='h-6 w-1/3 mx-auto mb-4' />
+
+				<div className='flex'>
+					<Skeleton className='h-10 w-32' />
+					{Array.from({ length: 6 }).map((_, idx) => (
+						<Skeleton key={idx} className='h-10 flex-1 mx-1' />
+					))}
+				</div>
+
 				{Array.from({ length: 5 }).map((_, rowIdx) => (
-					<div key={rowIdx} className='flex gap-2'>
-						<Skeleton className='h-16 w-32' />
-						{Array.from({ length: 5 }).map((_, colIdx) => (
-							<Skeleton key={colIdx} className='h-16 flex-1' />
+					<div key={rowIdx} className='flex'>
+						<Skeleton className='h-24 w-32' />
+						{Array.from({ length: 6 }).map((_, colIdx) => (
+							<Skeleton key={colIdx} className='h-24 flex-1 mx-1' />
 						))}
 					</div>
 				))}

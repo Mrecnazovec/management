@@ -15,8 +15,6 @@ export function SubjectLink({ subjectTitleFromSchedule }: Props) {
 
 	const matchedSubject = subjects?.find((subject) => subjectTitleFromSchedule.startsWith(subject.title))
 
-	console.log(matchedSubject)
-
 	if (!matchedSubject) return <span>{subjectTitleFromSchedule}</span>
 
 	return (

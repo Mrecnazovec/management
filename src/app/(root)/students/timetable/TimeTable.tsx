@@ -9,20 +9,21 @@ import { format, parseISO, parse, areIntervalsOverlapping, addDays, formatISO, s
 import { TimetableItem } from '@/shared/types/edu-page-timetable.interface'
 import { ru } from 'date-fns/locale'
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
 import { getEndOfWeek, getStartOfWeek } from '@/lib/eduPageGetDate'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { Button } from '@/components/ui/Button'
 import { Calendar } from '@/components/ui/Calendar'
-import { ArrowLeft, ArrowRight, Calendar1, MonitorX } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Calendar1, FileDown, MonitorX } from 'lucide-react'
 
-import { Skeleton } from '@/components/ui/Skeleton'
+import jsPDF from 'jspdf'
+import domtoimage from 'dom-to-image'
 
 import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { SubjectLink } from './SubjectLink'
+import { PrintableSchedule } from './PrintableSchedule'
 
 export function TimeTable() {
 	const router = useRouter()
@@ -60,11 +61,20 @@ export function TimeTable() {
 		return targetRow?.short ?? null
 	}, [eduPageData, id])
 
+	const groupName = useMemo(() => {
+		if (!eduPageData) return null
+		const classesSection = eduPageData.r.tables.find((section) => section.id === 'classes')
+		const targetRow = classesSection?.data_rows?.find((row) => row.id === id)
+		return targetRow?.name ?? null
+	}, [eduPageData, id])
+
 	const weekDates = useMemo(() => {
 		const days = []
 		for (let i = 0; i < 7; i++) {
 			const date = addDays(currentFrom, i)
-			days.push(formatISO(date, { representation: 'date' }))
+			if (date.getDay() !== 0) {
+				days.push(formatISO(date, { representation: 'date' }))
+			}
 		}
 		return days
 	}, [currentFrom])
@@ -137,6 +147,47 @@ export function TimeTable() {
 		router.push(`?${params.toString()}`)
 	}
 
+	const handleDownloadPDF = async () => {
+		const element = document.getElementById('timetable')
+		if (!element) return
+
+		try {
+			const dataUrl = await domtoimage.toPng(element, {
+				cacheBust: true,
+				bgcolor: '#ffffff',
+			})
+
+			const pdf = new jsPDF({
+				orientation: 'landscape',
+				unit: 'pt',
+				format: 'a4',
+			})
+
+			const pdfWidth = pdf.internal.pageSize.getWidth()
+			const pdfHeight = pdf.internal.pageSize.getHeight()
+
+			const img = new Image()
+			img.src = dataUrl
+			img.onload = () => {
+				const imgWidth = img.width
+				const imgHeight = img.height
+
+				const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight)
+
+				const finalWidth = imgWidth * ratio
+				const finalHeight = imgHeight * ratio
+
+				const x = (pdfWidth - finalWidth) / 2
+				const y = (pdfHeight - finalHeight) / 2
+
+				pdf.addImage(dataUrl, 'PNG', x, y, finalWidth, finalHeight)
+				pdf.save(`Расписание_${classShortName}_${eduPageTimeTable?.r.week_name}.pdf`)
+			}
+		} catch (err) {
+			console.error('Ошибка при генерации PDF:', err)
+		}
+	}
+
 	const scheduleGrid = useMemo(() => {
 		if (!eduPageTimeTable?.r?.ttitems) return {}
 
@@ -160,8 +211,8 @@ export function TimeTable() {
 	return (
 		<Container>
 			<div className='flex flex-wrap items-center lg:flex-row flex-col lg:justify-between justify-center gap-4 mb-4'>
-				<div className='flex items-center gap-4'>
-					<h1 className='xs:text-3xl text-2xl'>Расписание: {classShortName ?? '...'}</h1>
+				<div className='flex items-center justify-center flex-wrap gap-4'>
+					{/* <h1 className='xs:text-3xl text-2xl'>Расписание: {classShortName ?? '...'}</h1> */}
 					<div className='max-w-xs'>
 						<Select value={id} onValueChange={handleGroupChange}>
 							<SelectTrigger className='w-full'>
@@ -176,17 +227,22 @@ export function TimeTable() {
 							</SelectContent>
 						</Select>
 					</div>
+					<Button onClick={handleDownloadPDF} disabled={isLoadingTimeTable} size='sm' variant='outline' className='gap-2'>
+						<FileDown className='w-4 h-4' />
+						Скачать PDF (формат Сплетен)
+					</Button>
 				</div>
 				<div className='flex gap-2'>
-					<button
+					<Button
+						disabled={isLoading || isLoadingTimeTable}
 						onClick={() => changeWeek('prev')}
-						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2'
+						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2 text-black'
 					>
 						<ArrowLeft className='size-4' /> <span className='hidden sm:inline'>Пред. неделя</span>
-					</button>
+					</Button>
 					<Popover>
 						<PopoverTrigger asChild>
-							<Button variant='outline' className='text-sm'>
+							<Button disabled={isLoading || isLoadingTimeTable} variant='outline' className='text-sm'>
 								<Calendar1 /> {calendarDate ? format(calendarDate, 'dd.MM.yyyy') : 'Выбрать дату'}
 							</Button>
 						</PopoverTrigger>
@@ -194,12 +250,13 @@ export function TimeTable() {
 							<Calendar mode='single' selected={calendarDate} onSelect={handleDateChange} locale={ru} weekStartsOn={1} initialFocus />
 						</PopoverContent>
 					</Popover>
-					<button
+					<Button
+						disabled={isLoading || isLoadingTimeTable}
 						onClick={() => changeWeek('next')}
-						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2'
+						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2 text-black'
 					>
-						<span className='hidden sm:inline'>След. неделя</span> <ArrowRight className='size-4'/>
-					</button>
+						<span className='hidden sm:inline'>След. неделя</span> <ArrowRight className='size-4' />
+					</Button>
 				</div>
 			</div>
 
@@ -216,51 +273,62 @@ export function TimeTable() {
 			) : (
 				<>
 					{' '}
-					<Table className='hidden md:block'>
-						<TableHeader>
-							<TableRow>
-								<TableHead>День</TableHead>
-								{periods.map((period) => (
-									<TableHead key={period.number} className='text-center'>
-										{period.number}
-										<br />
-										{period.start} – {period.end}
-									</TableHead>
-								))}
-							</TableRow>
-						</TableHeader>
-						<TableBody>
-							{weekDates.map((date) => {
-								const dayPeriods = scheduleGrid[date] || {}
-								const dayName = format(parseISO(date), 'EEEE', { locale: ru })
-								const formattedDate = format(parseISO(date), 'dd.MM')
+					<div className='pb-10 hidden md:block'>
+						<h1 className='text-center mb-4'>{groupName}</h1>
+						<table className='w-full border border-collapse text-sm'>
+							<thead>
+								<tr>
+									<th className='border px-2 py-1 text-left'>День</th>
+									{periods.map((period) => (
+										<th key={period.number} className='border px-2 py-1 text-center'>
+											{period.number}
+											<br />({period.start}–{period.end})
+										</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								{weekDates.map((date) => {
+									const dayPeriods = scheduleGrid[date] || {}
+									const dayName = format(parseISO(date), 'EEEE', { locale: ru })
+									const formattedDate = format(parseISO(date), 'dd.MM')
 
-								return (
-									<TableRow key={date}>
-										<TableCell className='font-semibold'>
-											{dayName.charAt(0).toUpperCase() + dayName.slice(1)}
-											<br />
-											{formattedDate}
-										</TableCell>
-										{periods.map((period) => (
-											<TableCell key={period.number} className='align-top'>
-												{dayPeriods[period.number]?.map((item, idx) => (
-													<div key={idx} className='mb-2 p-1 rounded border shadow-sm bg-gray-50 max-w-full text-wrap'>
-														<div className='font-medium'>
-															<SubjectLink subjectTitleFromSchedule={getSubjectName(item.subjectid)} />
-														</div>
-														<div className='text-xs'>{item.classroomids.map(getClassroomsName).filter(Boolean).join(', ') || '—'}</div>
-														<div className='text-xs italic'>{item.teacherids.map(getTeachersName).filter(Boolean).join(', ') || '—'}</div>
-													</div>
-												)) || null}
-											</TableCell>
-										))}
-									</TableRow>
-								)
-							})}
-						</TableBody>
-					</Table>
+									return (
+										<tr key={date}>
+											<td className='border px-2 py-1 font-medium'>
+												{dayName.charAt(0).toUpperCase() + dayName.slice(1)}
+												<br />
+												{formattedDate}
+											</td>
+											{periods.map((period) => {
+												const lessons = dayPeriods[period.number] || []
+												return (
+													<td key={period.number} className='border px-2 py-1 align-center w-[20%] lg:h-[130px] md:h-[200px]'>
+														{lessons.map((item, idx) => (
+															<div key={idx} className='mb-1 text-center py-4 relative h-full flex items-center justify-center'>
+																<div className='font-semibold'>
+																	<SubjectLink subjectTitleFromSchedule={getSubjectName(item.subjectid)} />
+																</div>
+																<div className='text-xs absolute left-0 top-0'>
+																	{item.classroomids.map(getClassroomsName).filter(Boolean).join(', ')}
+																</div>
+																<div className='text-xs italic absolute right-0 bottom-0'>
+																	{item.teacherids.map(getTeachersName).filter(Boolean).join(', ')}
+																</div>
+															</div>
+														))}
+													</td>
+												)
+											})}
+										</tr>
+									)
+								})}
+							</tbody>
+						</table>
+					</div>
 					<div className='block md:hidden space-y-6'>
+						<h1 className='text-center mb-4'>{groupName}</h1>
+
 						{weekDates.map((date) => {
 							const dayPeriods = scheduleGrid[date] || {}
 							const dayName = format(parseISO(date), 'EEEE', { locale: ru })
@@ -305,6 +373,28 @@ export function TimeTable() {
 							)
 						})}
 					</div>
+					<div
+						style={{
+							position: 'absolute',
+							top: '-9999px',
+							left: '-9999px',
+							width: '1920px',
+							padding: '16px',
+							background: 'white',
+						}}
+					>
+						<PrintableSchedule
+							id='timetable'
+							groupName={groupName}
+							weekDates={weekDates}
+							periods={periods}
+							scheduleGrid={scheduleGrid}
+							getSubjectName={getSubjectName}
+							getClassroomsName={getClassroomsName}
+							getTeachersName={getTeachersName}
+						/>
+					</div>
+					{/* opacity-0 absolute -z-50 translate-x-[-100%] translate-y-[-100%] */}
 				</>
 			)}
 		</Container>
