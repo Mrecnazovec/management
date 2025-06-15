@@ -18,7 +18,7 @@ export function SubjectLink({ subjectTitleFromSchedule }: Props) {
 	if (!matchedSubject) return <span>{subjectTitleFromSchedule}</span>
 
 	return (
-		<Link href={PUBLIC_URL.subjects(matchedSubject.slug)} className='text-main hover:text-main-800'>
+		<Link href={PUBLIC_URL.subjects(matchedSubject.slug)} className='text-main hover:text-main/80 transition-[color]'>
 			{subjectTitleFromSchedule}
 		</Link>
 	)
