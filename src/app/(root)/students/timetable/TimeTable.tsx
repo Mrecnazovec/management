@@ -24,6 +24,7 @@ import Link from 'next/link'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { SubjectLink } from './SubjectLink'
 import { PrintableSchedule } from './PrintableSchedule'
+import toast from 'react-hot-toast'
 
 export function TimeTable() {
 	const router = useRouter()
@@ -148,6 +149,7 @@ export function TimeTable() {
 	}
 
 	const handleDownloadPDF = async () => {
+		toast.success('Началась конвертация')
 		const element = document.getElementById('timetable')
 		if (!element) return
 
@@ -182,9 +184,10 @@ export function TimeTable() {
 
 				pdf.addImage(dataUrl, 'PNG', x, y, finalWidth, finalHeight)
 				pdf.save(`Расписание_${classShortName}_${eduPageTimeTable?.r.week_name}.pdf`)
+				toast.success('Начинается загрузка')
 			}
 		} catch (err) {
-			console.error('Ошибка при генерации PDF:', err)
+			toast.error('Ошибка при конвертации')
 		}
 	}
 
