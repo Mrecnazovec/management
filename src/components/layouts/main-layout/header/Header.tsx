@@ -111,7 +111,7 @@ export function Header() {
 					isOpen && 'h-screen delay-0 '
 				)}
 			>
-				<Container className={cn('opacity-0 transition-all duration-500 overflow-y-scroll', isOpen && 'opacity-100 delay-300 ')}>
+				<Container className={cn('opacity-0 transition-all duration-500 flex flex-col overflow-y-scroll', isOpen && 'opacity-100 delay-300 ')}>
 					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px] sm:order-1 order-2'>
