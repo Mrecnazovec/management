@@ -285,7 +285,9 @@ export function TimeTable() {
 												</div>
 												{lessons.map((item, idx) => (
 													<div key={idx} className='mb-2 p-2 rounded border bg-gray-50'>
-														<div className='font-medium'>{getSubjectName(item.subjectid)}</div>
+														<div className='font-medium'>
+															<SubjectLink subjectTitleFromSchedule={getSubjectName(item.subjectid)} />
+														</div>
 														<div className='text-xs'>{item.classroomids.map(getClassroomsName).filter(Boolean).join(', ') || '—'}</div>
 														<div className='text-xs italic'>{item.teacherids.map(getTeachersName).filter(Boolean).join(', ') || '—'}</div>
 													</div>
