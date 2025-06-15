@@ -58,7 +58,7 @@ export function NewsCarousel({ classname }: Props) {
 				)}
 			</CarouselContent>
 			<div className='border-b-2 border-b-paragraph/30 mb-6'></div>
-			<div className='flex items-center gap-5 mb-4'>
+			<div className='flex items-center gap-5 mb-4 flex-wrap'>
 				{Array.from({ length: count }).map((_, index) => (
 					<button onClick={() => api?.scrollTo(index)} key={index} className='p-1 cursor-pointer'>
 						<div className={cn('size-2.5 rounded-full border-2 border-main ', `${current - 1 === index && 'bg-main'}`)}></div>

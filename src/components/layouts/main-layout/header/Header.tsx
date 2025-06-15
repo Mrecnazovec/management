@@ -97,7 +97,7 @@ export function Header() {
 							</Button>
 						</Link>
 					)}
-					<button onClick={() => setIsOpen(!isOpen)} className='relative w-6 h-4 cursor-pointer'>
+					<button onClick={() => setIsOpen(!isOpen)} className='relative w-6 h-4 cursor-pointer burger-menu'>
 						<div className={cn('w-6 h-[2px] bg-white absolute transition-all duration-500', isOpen ? 'rotate-45 top-2' : 'top-0')} />
 						<div className={cn('w-6 h-[2px] bg-white absolute transition-all duration-500', isOpen ? 'opacity-0' : 'top-2')} />
 						<div className={cn('w-6 h-[2px] bg-white absolute transition-all duration-500', isOpen ? '-rotate-45 top-2' : 'top-4')} />
@@ -111,14 +111,14 @@ export function Header() {
 					isOpen && 'h-screen delay-0 '
 				)}
 			>
-				<Container className={cn('opacity-0 transition-all duration-500 ', isOpen && 'opacity-100 delay-300 ')}>
+				<Container className={cn('opacity-0 transition-all duration-500 overflow-y-scroll', isOpen && 'opacity-100 delay-300 ')}>
 					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
 					<ul className='flex justify-between flex-wrap pt-[30px]'>
 						<li className='flex flex-col gap-[30px] sm:order-1 order-2'>
 							<p className='text-base font-semibold'>Направление Менеджмент ТФ МГУ имени М.В.Ломоносова</p>
 							<p className='text-base font-normal'>© 2023-2025</p>
 						</li>
-						<li className='flex flex-col gap-[30px] sm:order-2 order-1'>
+						<li className='flex gap-4 items-center sm:order-2 order-1 mb-4'>
 							<p className='text-base font-semibold'>Выбрать тему сайта</p>
 							<ThemeSwitcher />
 						</li>
