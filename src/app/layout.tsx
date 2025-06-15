@@ -4,6 +4,7 @@ import './globals.css'
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from '@/constants/seo.constants'
 import Script from 'next/script'
 import { Providers } from './providers'
+import { cookies } from 'next/headers'
 
 const interSans = Inter({
 	variable: '--font-inter-sans',
@@ -31,15 +32,17 @@ export const metadata: Metadata = {
 	},
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const cookieStore = await cookies()
+	const theme = cookieStore.get('theme')?.value || 'new'
 	return (
 		<html lang='ru'>
 			<head>
-				<meta name="yandex-verification" content="3acc2482785d4638" />
+				<meta name='yandex-verification' content='3acc2482785d4638' />
 				{/* Yandex Metrika */}
 				<Script id='yandex-metrika' strategy='afterInteractive'>
 					{`
@@ -68,7 +71,7 @@ export default function RootLayout({
 					</div>
 				</noscript>
 			</head>
-			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px]`}>
+			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme === 'new' ? 'new' : 'old'}`}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>

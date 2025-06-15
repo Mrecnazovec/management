@@ -12,6 +12,16 @@
 	font-display: swap;
 }
 
+.new {
+	--body-main: #0d579b;
+	--body-secondary: #0c9878;
+}
+
+.old {
+	--body-main: #3e0319;
+	--body-secondary: #7d0a35;
+}
+
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
@@ -46,8 +56,10 @@
 	--color-popover: var(--popover);
 	--color-card-foreground: var(--card-foreground);
 	--color-card: var(--card);
-	--color-main: #0d579b;
-	--color-secondary: #0c9878;
+	--color-main: var(--body-main);
+	--color-secondary: var(--body-secondary);
+	--color-new-main: #0d579b;
+	--color-new-secondary: #0c9878;
 	--color-danger: #7d0a35;
 	--color-paragraph: #575757;
 	--radius-sm: calc(var(--radius) - 4px);

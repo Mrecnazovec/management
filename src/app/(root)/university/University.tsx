@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AboutList } from './AboutList'
 import { ArrowUpFromDot } from 'lucide-react'
+import { FormModal } from '@/components/ui/modals/FormModal'
 
 export function University() {
 	return (
@@ -58,7 +59,6 @@ export function University() {
 					</Link>
 					<Link
 						href={PUBLIC_URL.university('teachers')}
-					
 						className='aspect-[810/400] sm:col-span-2 col-span-3 bg-[url("/jpg/teachers.jpg")] bg-no-repeat bg-cover object-cover relative rounded-2xl bg-[position:top_20%_center]'
 					>
 						<div className='flex items-center gap-2 text-white text-xl absolute md:bottom-[30px] bottom-[5px] md:left-[30px] left-[5px] font-semibold font-msu'>
@@ -77,6 +77,7 @@ export function University() {
 					</Link>
 				</div>
 			</section>
+			<FormModal />
 		</Container>
 	)
 }

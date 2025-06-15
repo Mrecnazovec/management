@@ -5,6 +5,7 @@ import { HistorySection } from '@/components/sections/home/HistorySection'
 import { NavigationSection } from '@/components/sections/home/NavigationSection'
 import { NewsSection } from '@/components/sections/home/NewsSection'
 import { NumberSection } from '@/components/sections/home/NumberSection'
+import { FormModal } from '@/components/ui/modals/FormModal'
 
 export function Home() {
 	return (
@@ -15,6 +16,7 @@ export function Home() {
 			<NumberSection />
 			<HistorySection />
 			<NewsSection />
+			<FormModal />
 		</>
 	)
 }

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { PATH_URL } from '@/config/url.config'
+import { FormModal } from '@/components/ui/modals/FormModal'
 
 interface Props {
 	className?: string
@@ -231,6 +232,7 @@ export function Applicant() {
 					<span id='commission'>Канал приемной комиссии в Telegram:</span> <A href='https://t.me/tf_msu_abiturient'>https://t.me/tf_msu_abiturient</A>
 				</Span>
 			</div>
+			<FormModal />
 		</Container>
 	)
 }
