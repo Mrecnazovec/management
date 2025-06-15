@@ -28,15 +28,14 @@ export const PrintableSchedule: FC<Props> = ({
 }) => {
 	return (
 		<div id={id} className='p-4 pb-10'>
-			<h1 className='text-center mb-4'>{groupName}</h1>
+			<h1 className='text-center mb-4 text-4xl'>{groupName}</h1>
 			<table className='w-full border border-collapse text-sm'>
 				<thead>
 					<tr>
-						<th className='border px-2 py-1 text-left'>День</th>
+						<th className='border px-2 py-1 text-left'><p className='text-2xl'>День</p></th>
 						{periods.map((period) => (
 							<th key={period.number} className='border px-2 py-1 text-center'>
-								{period.number}
-								<br />({period.start}–{period.end})
+								<p className='text-3xl mb-0'>{period.number}</p>({period.start}–{period.end})
 							</th>
 						))}
 					</tr>
@@ -44,25 +43,25 @@ export const PrintableSchedule: FC<Props> = ({
 				<tbody>
 					{weekDates.map((date) => {
 						const dayPeriods = scheduleGrid[date] || {}
-						const dayName = format(parseISO(date), 'EEEE', { locale: ru })
+						const dayName = format(parseISO(date), 'EEE', { locale: ru })
 						const formattedDate = format(parseISO(date), 'dd.MM')
 
 						return (
 							<tr key={date}>
 								<td className='border px-2 py-1 font-medium'>
-									{dayName.charAt(0).toUpperCase() + dayName.slice(1)}
+									<p className='text-3xl'>{dayName.charAt(0).toUpperCase() + dayName.slice(1)}</p>
 									<br />
 									{formattedDate}
 								</td>
 								{periods.map((period) => {
 									const lessons = dayPeriods[period.number] || []
 									return (
-										<td key={period.number} className='border px-2 py-1 align-center w-[20%] h-[130px]'>
+										<td key={period.number} className='border px-2 py-1 align-center w-[20%] h-[150px]'>
 											{lessons.map((item, idx) => (
 												<div key={idx} className='mb-1 text-center py-4 relative h-full flex items-center justify-center'>
-													<div className='font-semibold'>{getSubjectName(item.subjectid)}</div>
-													<div className='text-xs absolute left-0 top-0'>{item.classroomids.map(getClassroomsName).filter(Boolean).join(', ')}</div>
-													<div className='text-xs italic absolute right-0 bottom-0'>
+													<div className='font-semibold text-xl'>{getSubjectName(item.subjectid)}</div>
+													<div className='text-base absolute left-0 top-0'>{item.classroomids.map(getClassroomsName).filter(Boolean).join(', ')}</div>
+													<div className='text-base italic absolute right-0 bottom-0'>
 														{item.teacherids.map(getTeachersName).filter(Boolean).join(', ')}
 													</div>
 												</div>

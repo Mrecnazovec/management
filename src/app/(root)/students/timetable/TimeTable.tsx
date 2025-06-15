@@ -281,8 +281,7 @@ export function TimeTable() {
 									<th className='border px-2 py-1 text-left'>День</th>
 									{periods.map((period) => (
 										<th key={period.number} className='border px-2 py-1 text-center'>
-											{period.number}
-											<br />({period.start}–{period.end})
+											<p className='text-2xl mb-0'>{period.number}</p>({period.start}–{period.end})
 										</th>
 									))}
 								</tr>
@@ -290,7 +289,7 @@ export function TimeTable() {
 							<tbody>
 								{weekDates.map((date) => {
 									const dayPeriods = scheduleGrid[date] || {}
-									const dayName = format(parseISO(date), 'EEEE', { locale: ru })
+									const dayName = format(parseISO(date), 'EEE', { locale: ru })
 									const formattedDate = format(parseISO(date), 'dd.MM')
 
 									return (
@@ -379,8 +378,8 @@ export function TimeTable() {
 							top: '-9999px',
 							left: '-9999px',
 							width: '1920px',
+							height: '1080px',
 							padding: '16px',
-							background: 'white',
 						}}
 					>
 						<PrintableSchedule
