@@ -15,7 +15,7 @@ import { getEndOfWeek, getStartOfWeek } from '@/lib/eduPageGetDate'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { Button } from '@/components/ui/Button'
 import { Calendar } from '@/components/ui/Calendar'
-import { Calendar1, MonitorX } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Calendar1, MonitorX } from 'lucide-react'
 
 import { Skeleton } from '@/components/ui/Skeleton'
 
@@ -178,8 +178,11 @@ export function TimeTable() {
 					</div>
 				</div>
 				<div className='flex gap-2'>
-					<button onClick={() => changeWeek('prev')} className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition'>
-						← <span className='hidden sm:inline'>Пред. неделя</span>
+					<button
+						onClick={() => changeWeek('prev')}
+						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2'
+					>
+						<ArrowLeft className='size-4' /> <span className='hidden sm:inline'>Пред. неделя</span>
 					</button>
 					<Popover>
 						<PopoverTrigger asChild>
@@ -191,8 +194,11 @@ export function TimeTable() {
 							<Calendar mode='single' selected={calendarDate} onSelect={handleDateChange} locale={ru} weekStartsOn={1} initialFocus />
 						</PopoverContent>
 					</Popover>
-					<button onClick={() => changeWeek('next')} className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition'>
-						<span className='hidden sm:inline'>След. неделя</span> →
+					<button
+						onClick={() => changeWeek('next')}
+						className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2'
+					>
+						<span className='hidden sm:inline'>След. неделя</span> <ArrowRight className='size-4'/>
 					</button>
 				</div>
 			</div>
