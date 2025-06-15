@@ -11,7 +11,7 @@ export function ThemeSwitcher() {
 	const [value, setValue] = useState('old')
 
 	useEffect(() => {
-		const current = Cookies.get('theme') || 'old'
+		const current = Cookies.get('theme') || 'new'
 		setValue(current)
 	}, [])
 
