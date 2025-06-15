@@ -113,7 +113,7 @@ export function Header() {
 			>
 				<Container className={cn('opacity-0 transition-all duration-500 flex flex-col overflow-y-scroll', isOpen && 'opacity-100 delay-300 ')}>
 					<MenuLinks menuSections={MenuSections} onLinkClick={() => setIsOpen(false)} />
-					<ul className='flex justify-between flex-wrap pt-[30px]'>
+					<ul className='flex justify-between flex-wrap pt-[30px] pb-[200px]'>
 						<li className='flex flex-col gap-[30px] sm:order-1 order-2'>
 							<p className='text-base font-semibold'>Направление Менеджмент ТФ МГУ имени М.В.Ломоносова</p>
 							<p className='text-base font-normal'>© 2023-2025</p>
