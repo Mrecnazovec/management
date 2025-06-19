@@ -49,7 +49,7 @@ export function Plan() {
 						key={`${combo.courseNumber}-${combo.semesterNumber}`}
 						courseNumber={combo.courseNumber}
 						semesterNumber={combo.semesterNumber}
-						isAdmin={true}
+						isAdmin={false}
 					/>
 				))
 			)}
