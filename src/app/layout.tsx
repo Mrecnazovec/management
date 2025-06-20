@@ -67,7 +67,7 @@ export default async function RootLayout({
 
 				<noscript>
 					<div>
-						<img src='https://mc.yandex.ru/watch/102155357' style={{ position: 'absolute', left: '-9999px' }} alt='' />
+						<img src='https://mc.yandex.ru/watch/102814733' style={{ position: 'absolute', left: '-9999px' }} alt='' />
 					</div>
 				</noscript>
 			</head>
