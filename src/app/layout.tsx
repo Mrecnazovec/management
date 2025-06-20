@@ -70,6 +70,16 @@ export default async function RootLayout({
 						<img src='https://mc.yandex.ru/watch/102814733' style={{ position: 'absolute', left: '-9999px' }} alt='' />
 					</div>
 				</noscript>
+
+				<Script id='google-analytics' strategy='afterInteractive' src='https://www.googletagmanager.com/gtag/js?id=G-8NGYG03PTG' />
+				<Script id='gtag-init' strategy='afterInteractive'>
+					{`
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-8NGYG03PTG');
+	`}
+				</Script>
 			</head>
 			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme === 'new' ? 'new' : 'old'}`}>
 				<Providers>{children}</Providers>
