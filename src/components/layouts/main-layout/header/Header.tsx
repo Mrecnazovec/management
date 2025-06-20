@@ -68,8 +68,9 @@ export function Header() {
 
 	return (
 		<header
+			// border-b-4 border-b-danger
 			className={cn(
-				'bg-gradient-to-r from-main from-25% to-secondary to-75% border-b-4 border-b-danger fixed top-0 left-0 w-full z-30 h-[90px] max-[390px]:h-[70px] transition-transform duration-300',
+				'bg-gradient-to-r from-main from-25% to-secondary to-75%  fixed top-0 left-0 w-full z-30 h-[90px] max-[390px]:h-[70px] transition-transform duration-300',
 				!showHeader && 'transform -translate-y-full'
 			)}
 		>

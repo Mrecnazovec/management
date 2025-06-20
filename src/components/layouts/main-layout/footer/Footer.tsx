@@ -6,7 +6,8 @@ import Link from 'next/link'
 
 export function Footer() {
 	return (
-		<footer className='bg-gradient-to-r from-main from-25% to-secondary to-75% border-t-4 border-t-danger text-white sm:py-10 py-5'>
+		// border-t-4 border-t-danger
+		<footer className='bg-gradient-to-r from-main from-25% to-secondary to-75%  text-white sm:py-10 py-5'>
 			<Container>
 				<MenuLinks menuSections={MenuSections} />
 				<ul className='flex justify-between flex-wrap pt-[30px]'>

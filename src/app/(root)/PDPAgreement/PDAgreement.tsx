@@ -19,8 +19,8 @@ export function PDAgreement() {
 			<P>Данное соглашение об обработке персональных данных разработано в соответствии с законодательством Республики Узбекистан.</P>
 			<P>
 				Присоединяясь к настоящему Соглашению и оставляя свои данные на Сайте{' '}
-				<Link className='text-main hover:opacity-85 transition-opacity' href='https://www.msu-management.uz'>
-					https://www.msu-management.uz
+				<Link className='text-main hover:opacity-85 transition-opacity' href='https://msu-management.uz'>
+					https://msu-management.uz
 				</Link>{' '}
 				(далее – Сайт), путем заполнения полей онлайн-заявки (регистрации) Пользователь выражает Согласие на обработку персональных данных и их
 				передачу оператору обработки персональных данных – Ташкентскому филиалу Московского государственного университета имени М.В. Ломоносова (Адрес
@@ -92,11 +92,11 @@ export function PDAgreement() {
 			</P>
 			<P className='mb-25'>
 				Действующая редакция всегда находится на странице по адресу:{' '}
-				<Link className='text-main hover:opacity-85 transition-opacity' href='https://www.msu-management.uz/PDPAgreement'>
-					https://www.msu-management.uz/PDPAgreement
+				<Link className='text-main hover:opacity-85 transition-opacity' href='https://msu-management.uz/PDPAgreement'>
+					https://msu-management.uz/PDPAgreement
 				</Link>
 			</P>
-			<DateTag date='25 мая 2025 года' />
+			<DateTag date='25 мая 2025' />
 		</Container>
 	)
 }

@@ -3,6 +3,8 @@
 import { ContactForm } from '@/app/(root)/applicant/form-section/ContactForm'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../Dialog'
 import { Button } from '../Button'
+import Link from 'next/link'
+import { PUBLIC_URL } from '@/config/url.config'
 
 export function FormModal() {
 	return (
@@ -15,10 +17,12 @@ export function FormModal() {
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className='text-2xl font-bold text-center mb-1'>
-						Подача документов <br /> ещё не началась
+						<Link href={PUBLIC_URL.applicant()} className='underline text-main'>
+							Инструкция по подаче документов
+						</Link>
 					</DialogTitle>
 					<DialogDescription className='text-center text-muted-foreground'>
-						Оставьте заявку и мы свяжемся с вами когда начнётся приём!
+						Остались вопросы? Оставьте заявку и мы с вами свяжемся!
 					</DialogDescription>
 				</DialogHeader>
 				<ContactForm />

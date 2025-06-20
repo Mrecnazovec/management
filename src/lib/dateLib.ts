@@ -13,5 +13,5 @@ export function DateUtil(dateStr: Date): string {
 	const month = MONTHS_RU[date.getMonth()]
 	const year = date.getFullYear()
 
-	return `${day} ${month} ${year} года`
+	return `${day} ${month} ${year}`
 }
