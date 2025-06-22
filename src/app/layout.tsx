@@ -1,3 +1,5 @@
+// RootLayout.tsx
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -16,7 +18,6 @@ export const metadata: Metadata = {
 		default: SITE_NAME,
 		template: `%s | ${SITE_NAME}`,
 	},
-
 	authors: SITE_AUTHOR,
 	metadataBase: new URL('https://msu-management.uz'),
 	robots: {
@@ -39,10 +40,12 @@ export default async function RootLayout({
 }>) {
 	const cookieStore = await cookies()
 	const theme = cookieStore.get('theme')?.value || 'new'
+
 	return (
 		<html lang='ru'>
 			<head>
 				<meta name='yandex-verification' content='3acc2482785d4638' />
+
 				{/* Yandex Metrika */}
 				<Script id='yandex-metrika' strategy='afterInteractive'>
 					{`
@@ -50,13 +53,13 @@ export default async function RootLayout({
 							m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 							m[i].l=1*new Date();
 							for (var j = 0; j < document.scripts.length; j++) {
-								if (document.scripts[j].src === r) { return; }
+								if (document.scripts[j].src === r) return;
 							}
 							k=e.createElement(t),a=e.getElementsByTagName(t)[0],
 							k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
 						})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-						ym(102155357, "init", {
+						ym(102814733, "init", {
 							clickmap:true,
 							trackLinks:true,
 							accurateTrackBounce:true,
@@ -65,20 +68,15 @@ export default async function RootLayout({
 					`}
 				</Script>
 
-				<noscript>
-					<div>
-						<img src='https://mc.yandex.ru/watch/102814733' style={{ position: 'absolute', left: '-9999px' }} alt='' />
-					</div>
-				</noscript>
-
+				{/* Google Analytics */}
 				<Script id='google-analytics' strategy='afterInteractive' src='https://www.googletagmanager.com/gtag/js?id=G-8NGYG03PTG' />
 				<Script id='gtag-init' strategy='afterInteractive'>
 					{`
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-8NGYG03PTG');
-	`}
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'G-8NGYG03PTG');
+					`}
 				</Script>
 			</head>
 			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme === 'new' ? 'new' : 'old'}`}>
