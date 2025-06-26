@@ -27,11 +27,14 @@ export function ThemeSwitcher() {
 				<SelectValue placeholder='Выберите тему' />
 			</SelectTrigger>
 			<SelectContent>
+				<SelectItem value='new'>
+					Новая тема <div className='bg-gradient-to-r from-new-main to-new-secondary size-4 rounded-full'></div>
+				</SelectItem>
 				<SelectItem value='old'>
 					Старая тема <div className='bg-danger size-4 rounded-full'></div>
 				</SelectItem>
-				<SelectItem value='new'>
-					Новая тема <div className='bg-gradient-to-r from-new-main to-new-secondary size-4 rounded-full'></div>
+				<SelectItem value='pick_me'>
+					Весенняя тема <div className='bg-pink-400 size-4 rounded-full'></div>
 				</SelectItem>
 			</SelectContent>
 		</Select>

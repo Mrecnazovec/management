@@ -13,13 +13,18 @@
 }
 
 .new {
-	--body-main: #0d579b;
-	--body-secondary: #0c9878;
+	--body-main: #7D0A35;
+	--body-secondary: #0D579B;
 }
 
 .old {
 	--body-main: #3e0319;
 	--body-secondary: #7d0a35;
+}
+
+.pick_me {
+	--body-main: #c95686;
+	--body-secondary: #f787b5;
 }
 
 @theme inline {
@@ -58,8 +63,8 @@
 	--color-card: var(--card);
 	--color-main: var(--body-main);
 	--color-secondary: var(--body-secondary);
-	--color-new-main: #0d579b;
-	--color-new-secondary: #0c9878;
+	--color-new-main: #7D0A35;
+	--color-new-secondary: #0D579B;
 	--color-danger: #7d0a35;
 	--color-paragraph: #575757;
 	--radius-sm: calc(var(--radius) - 4px);

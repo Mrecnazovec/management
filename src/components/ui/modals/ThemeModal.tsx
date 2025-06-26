@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/Dialog'
 import { Button } from '@/components/ui/Button'
-import { CheckCircle2, LayoutDashboard, Wand2 } from 'lucide-react'
+import { CheckCircle2, Flower, LayoutDashboard, Wand2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type ThemeOption = 'old' | 'new'
+type ThemeOption = 'old' | 'new' | 'pick_me'
 
 const themes: {
 	id: ThemeOption
@@ -26,6 +26,12 @@ const themes: {
 		title: 'Классический стиль',
 		description: 'Привычный дизайн в рубиновом цвете',
 		icon: <LayoutDashboard className='size-6 text-danger' />,
+	},
+	{
+		id: 'pick_me',
+		title: 'Весенний стиль',
+		description: 'Свежий нежный дизайн',
+		icon: <Flower className='size-6 text-pink-300' />,
 	},
 ]
 

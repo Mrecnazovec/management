@@ -79,7 +79,7 @@ export default async function RootLayout({
 					`}
 				</Script>
 			</head>
-			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme === 'new' ? 'new' : 'old'}`}>
+			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme}`}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>
