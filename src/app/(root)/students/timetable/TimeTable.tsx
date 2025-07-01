@@ -23,7 +23,7 @@ import Cookies from 'js-cookie'
 import Link from 'next/link'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { SubjectLink } from './SubjectLink'
-import { PrintableSchedule } from './PrintableSchedule'
+import { PrintableSchedule } from './toPrint/PrintableSchedule'
 import toast from 'react-hot-toast'
 
 export function TimeTable() {
@@ -269,7 +269,7 @@ export function TimeTable() {
 				<div className='h-[80vh] flex flex-col items-center justify-center text-danger text-center'>
 					<MonitorX className='size-20' />
 					<p>Ошибка при загрузке данных попробуйте позже</p>
-					<Link className='text-main underline' href={'https://msu2006.edupage.org/timetable/'}>
+					<Link className='text-link underline' href={'https://msu2006.edupage.org/timetable/'}>
 						Или проверьте расписание здесь
 					</Link>
 				</div>

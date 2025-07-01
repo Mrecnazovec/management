@@ -36,7 +36,7 @@ interface LinkProps {
 
 function A({ children, href, className }: PropsWithChildren<LinkProps>) {
 	return (
-		<Link href={href} className={cn('text-main underline hover:opacity-80 transition-opacity', className)}>
+		<Link href={href} className={cn('text-link underline hover:opacity-80 transition-opacity', className)}>
 			{children}
 		</Link>
 	)

@@ -3,8 +3,8 @@ import { Skeleton } from '@/components/ui/Skeleton'
 export function LoaderSkeleton() {
 	return (
 		<>
-			<div className='hidden md:block space-y-2'>
-				<Skeleton className='h-6 w-1/3 mx-auto mb-4' />
+			<div className='hidden lg:block space-y-2'>
+				{/* <Skeleton className='h-6 w-1/3 mx-auto mb-4' />
 
 				<div className='flex'>
 					<Skeleton className='h-10 w-32' />
@@ -20,10 +20,13 @@ export function LoaderSkeleton() {
 							<Skeleton key={colIdx} className='h-24 flex-1 mx-1' />
 						))}
 					</div>
+				))} */}
+				{Array.from({ length: 4 }).map((_, idx) => (
+					<Skeleton key={idx} className='w-full h-[600px] mb-10' />
 				))}
 			</div>
 
-			<div className='block md:hidden space-y-4'>
+			{/* <div className='block md:hidden space-y-4'>
 				{Array.from({ length: 5 }).map((_, idx) => (
 					<div key={idx} className='border rounded-lg shadow-sm p-4 space-y-2'>
 						<Skeleton className='h-6 w-2/3' />
@@ -36,7 +39,7 @@ export function LoaderSkeleton() {
 						))}
 					</div>
 				))}
-			</div>
+			</div> */}
 		</>
 	)
 }

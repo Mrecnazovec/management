@@ -41,7 +41,7 @@ export function RichTextEditor({ value, onChange, disabled }: RichTextEditorProp
 				autolink: true,
 				linkOnPaste: true,
 				HTMLAttributes: {
-					class: 'text-main hover:text-main/80 transition-[color]',
+					class: 'text-link hover:text-link/80 transition-[color]',
 				},
 			}),
 			ResizeImage.configure({

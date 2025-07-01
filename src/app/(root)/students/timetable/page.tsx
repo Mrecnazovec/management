@@ -4,6 +4,7 @@ import { PUBLIC_URL } from '@/config/url.config'
 import { Bread } from '@/components/ui/Breadcrumb/Bread'
 import { Suspense } from 'react'
 import { LoaderSkeleton } from './LoaderSkeleton'
+import { Schedule } from './Schedule'
 
 export const metadata: Metadata = {
 	title: 'Расписание',
@@ -40,7 +41,8 @@ export default function Page() {
 		<>
 			<Bread navigation={navigation} />
 			<Suspense fallback={<LoaderSkeleton />}>
-				<TimeTable />
+				{/* <TimeTable /> */}
+				<Schedule />
 			</Suspense>
 		</>
 	)

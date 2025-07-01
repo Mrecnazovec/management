@@ -31,7 +31,7 @@ export function University() {
 				М.В. Ломоносова. <br />
 				<br />
 				Обучение в Филиале осуществляется по{' '}
-				<Link className='text-main' href={PUBLIC_URL.students('plan')}>
+				<Link className='text-link' href={PUBLIC_URL.students('plan')}>
 					учебным планам
 				</Link>{' '}
 				и программам, утвержденным МГУ им. М.В. Ломоносова. <br />

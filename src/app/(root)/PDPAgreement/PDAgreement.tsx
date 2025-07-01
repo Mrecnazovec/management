@@ -19,7 +19,7 @@ export function PDAgreement() {
 			<P>Данное соглашение об обработке персональных данных разработано в соответствии с законодательством Республики Узбекистан.</P>
 			<P>
 				Присоединяясь к настоящему Соглашению и оставляя свои данные на Сайте{' '}
-				<Link className='text-main hover:opacity-85 transition-opacity' href='https://msu-management.uz'>
+				<Link className='text-link hover:opacity-85 transition-opacity' href='https://msu-management.uz'>
 					https://msu-management.uz
 				</Link>{' '}
 				(далее – Сайт), путем заполнения полей онлайн-заявки (регистрации) Пользователь выражает Согласие на обработку персональных данных и их
@@ -92,7 +92,7 @@ export function PDAgreement() {
 			</P>
 			<P className='mb-25'>
 				Действующая редакция всегда находится на странице по адресу:{' '}
-				<Link className='text-main hover:opacity-85 transition-opacity' href='https://msu-management.uz/PDPAgreement'>
+				<Link className='text-link hover:opacity-85 transition-opacity' href='https://msu-management.uz/PDPAgreement'>
 					https://msu-management.uz/PDPAgreement
 				</Link>
 			</P>

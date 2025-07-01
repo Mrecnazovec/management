@@ -24,7 +24,7 @@ export function PersonSoloPage({ person }: PersonSoloPageProps) {
 					<p className='flex flex-wrap gap-x-2'>
 						{person.roles.map((role, index) => (
 							<span key={role} className='after:content-[","] last:after:content-none'>
-								<Link href={PUBLIC_URL.role(role)} className='text-main hover:text-main/80 transition-[color]'>
+								<Link href={PUBLIC_URL.role(role)} className='text-link hover:text-link/80 transition-[color]'>
 									{rolePerson[role]}
 								</Link>
 							</span>

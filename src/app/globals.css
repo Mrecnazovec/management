@@ -13,8 +13,8 @@
 }
 
 .new {
-	--body-main: #7D0A35;
-	--body-secondary: #0D579B;
+	--body-main: #7d0a35;
+	--body-secondary: #0d579b;
 }
 
 .old {
@@ -63,8 +63,9 @@
 	--color-card: var(--card);
 	--color-main: var(--body-main);
 	--color-secondary: var(--body-secondary);
-	--color-new-main: #7D0A35;
-	--color-new-secondary: #0D579B;
+	--color-new-main: #7d0a35;
+	--color-new-secondary: #0d579b;
+	--color-link: #0d579b;
 	--color-danger: #7d0a35;
 	--color-paragraph: #575757;
 	--radius-sm: calc(var(--radius) - 4px);
