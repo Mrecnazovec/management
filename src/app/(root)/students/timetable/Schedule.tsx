@@ -6,7 +6,7 @@ import { useGetEduPageData } from '@/hooks/queries/edu-page/useGetEduPageData'
 import { useGetAllEduPageTimeTables } from '@/hooks/queries/edu-page/useGetAllEduPageTimeTables'
 import { addDays, areIntervalsOverlapping, endOfWeek, format, formatISO, parse, parseISO, startOfWeek } from 'date-fns'
 import { getEndOfWeek, getStartOfWeek } from '@/lib/eduPageGetDate'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { ArrowLeft, ArrowRight, Calendar1, FileDown } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
@@ -15,22 +15,24 @@ import { ru } from 'date-fns/locale'
 import { TimetableItem } from '@/shared/types/edu-page-timetable.interface'
 import { ScheduleTable } from './ScheduleTable'
 import toast from 'react-hot-toast'
-import jsPDF from 'jspdf'
 import domtoimage from 'dom-to-image'
 import { TableToPrint } from './toPrint/TableToPrint'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { Skeleton } from '@/components/ui/Skeleton'
-import { useRef } from 'react'
-import { isEqual } from 'lodash'
 import { generatePdfFromDom } from '@/lib/pdf-generator'
+import Cookies from 'js-cookie'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
+import { isEqual } from 'lodash'
 
 export function Schedule() {
 	const router = useRouter()
 	const searchParams = useSearchParams()
+	const groupId = Cookies.get('group_id') ?? '-143'
+	const id = groupId ?? searchParams.get('id') ?? '-143'
 
-	const ids = ['-143', '-144', '-141', '-142']
+	const groupIds = ['-143', '-144', '-141', '-142']
 	const { eduPageData, isLoading } = useGetEduPageData()
-	const { timeTables, isLoading: isLoadingTimeTable } = useGetAllEduPageTimeTables(ids)
+	const { timeTables, isLoading: isLoadingTimeTable } = useGetAllEduPageTimeTables(groupIds)
 
 	const currentFrom = parseISO(searchParams.get('datefrom') ?? getStartOfWeek())
 	const currentTo = parseISO(searchParams.get('dateto') ?? getEndOfWeek())
@@ -41,6 +43,8 @@ export function Schedule() {
 	const [tableImages, setTableImages] = useState<string[]>([])
 	const [imageLoadedMap, setImageLoadedMap] = useState<Record<number, boolean>>({})
 
+	const myGroupId = Cookies.get('group_id') ?? '-143'
+
 	useEffect(() => {
 		const match = window.matchMedia('(max-width: 1023px)')
 		setIsMobile(match.matches)
@@ -48,16 +52,22 @@ export function Schedule() {
 
 	const prevTablesRef = useRef<any[]>([])
 
+	const tablesToShow = useMemo(() => {
+		if (id === 'all') return timeTables
+		const index = groupIds.indexOf(id)
+		if (index === -1) return []
+		return [timeTables[index]]
+	}, [id, timeTables])
+
 	useEffect(() => {
 		if (isMobile && !isLoading && !isLoadingTimeTable) {
-			// Если таблицы не поменялись — не генерируем заново
-			if (isEqual(prevTablesRef.current, timeTables)) return
+			if (isEqual(prevTablesRef.current, tablesToShow)) return
 
-			prevTablesRef.current = timeTables
+			prevTablesRef.current = tablesToShow
 			setIsGeneratingImages(true)
 			generateTableImages().finally(() => setIsGeneratingImages(false))
 		}
-	}, [timeTables, isLoading, isLoadingTimeTable, isMobile])
+	}, [tablesToShow, isLoading, isLoadingTimeTable, isMobile])
 
 	const periods = [
 		{ number: 1, start: '09:00', end: '10:30' },
@@ -65,6 +75,14 @@ export function Schedule() {
 		{ number: 3, start: '13:15', end: '14:45' },
 		{ number: 4, start: '15:00', end: '16:30' },
 		{ number: 5, start: '16:45', end: '18:15' },
+	]
+
+	const groupSelector = [
+		{ groupName: 'Полное расписание', id: 'all' },
+		{ groupName: 'Эк1-23', id: '-143' },
+		{ groupName: 'Эк2-23', id: '-144' },
+		{ groupName: 'Эк1-24', id: '-141' },
+		{ groupName: 'Эк2-24', id: '-142' },
 	]
 
 	const weekDates = useMemo(() => {
@@ -197,60 +215,72 @@ export function Schedule() {
 			})
 			.map((period) => ({ ...item, uniperiod: period.number.toString(), starttime: period.start, endtime: period.end }))
 	}
+	function handleGroupChange(newId: string) {
+		const newParams = new URLSearchParams(searchParams)
+		newParams.set('id', newId)
+		Cookies.set('group_id', newId, { expires: 30 })
+		router.push(`?${newParams.toString()}`)
+	}
 
 	return (
 		<>
 			<Container>
 				{/* Header */}
 				<div className='flex flex-wrap items-center lg:flex-row flex-col lg:justify-between justify-center gap-4 mb-4'>
-					<div>
-						<Button onClick={handleDownloadPDF} disabled={isLoadingTimeTable} size='sm' variant='outline' className='gap-2'>
-							<FileDown className='w-4 h-4' /> Скачать PDF (формат Сплетен)
-						</Button>
-					</div>
 					<div className='flex gap-2'>
-						<Button
-							disabled={isLoading || isLoadingTimeTable}
-							onClick={() => changeWeek('prev')}
-							className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2 text-black'
-						>
-							<ArrowLeft className='size-4' /> <span className='hidden sm:inline'>Пред. неделя</span>
+						<Button onClick={handleDownloadPDF} disabled={isLoadingTimeTable} variant='outline' className='gap-2'>
+							<FileDown className='w-4 h-4' /> Скачать PDF
+						</Button>
+						<Select disabled={isLoading || isLoadingTimeTable} value={id} onValueChange={handleGroupChange}>
+							<SelectTrigger className='w-full'>
+								<SelectValue placeholder='Выберите группу' />
+							</SelectTrigger>
+							<SelectContent>
+								{groupSelector.map((group) => (
+									<SelectItem key={group.id} value={group.id}>
+										{group.groupName}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
+					</div>
+
+					<div className='flex gap-2'>
+						<Button onClick={() => changeWeek('prev')} disabled={isLoading || isLoadingTimeTable} variant={'outline'}>
+							<ArrowLeft className='size-4' />
 						</Button>
 						<Popover>
 							<PopoverTrigger asChild>
-								<Button disabled={isLoading || isLoadingTimeTable} variant='outline' className='text-sm'>
-									<Calendar1 /> {calendarDate ? format(calendarDate, 'dd.MM.yyyy') : 'Выбрать дату'}
+								<Button disabled={isLoading || isLoadingTimeTable} variant='outline'>
+									<Calendar1 /> {calendarDate ? format(calendarDate, 'dd.MM.yyyy') : 'Дата'}
 								</Button>
 							</PopoverTrigger>
 							<PopoverContent className='w-auto p-0'>
 								<Calendar mode='single' selected={calendarDate} onSelect={handleDateChange} locale={ru} weekStartsOn={1} initialFocus />
 							</PopoverContent>
 						</Popover>
-						<Button
-							disabled={isLoading || isLoadingTimeTable}
-							onClick={() => changeWeek('next')}
-							className='px-3 py-1 text-sm rounded-md border bg-white hover:bg-gray-100 transition flex items-center gap-2 text-black'
-						>
-							<span className='hidden sm:inline'>След. неделя</span> <ArrowRight className='size-4' />
+						<Button onClick={() => changeWeek('next')} disabled={isLoading || isLoadingTimeTable} variant={'outline'}>
+							<ArrowRight className='size-4' />
 						</Button>
 					</div>
+
 					{isNotCurrentWeek && (
-						<Button disabled={isLoading || isLoadingTimeTable} onClick={returnToCurrentWeek} variant='main' className='text-sm'>
+						<Button onClick={returnToCurrentWeek} disabled={isLoading || isLoadingTimeTable} variant='main' className='text-sm'>
 							Вернуться к текущей неделе
 						</Button>
 					)}
 				</div>
 
-				{/* Desktop расписание */}
+				{/* Desktop schedule */}
 				{isLoading || isLoadingTimeTable ? (
 					<LoaderSkeleton />
 				) : (
-					timeTables.map((tableData, index) => {
-						const items = tableData.r.ttitems
+					tablesToShow.map((tableData, index) => {
+						const items = tableData?.r.ttitems ?? []
 						if (!items.length) return null
-						const classId = ids[index]
+						const classId = myGroupId !== 'all' ? myGroupId : groupIds[index]
 						const groupName =
-							eduPageData?.r.tables.find((s) => s.id === 'classes')?.data_rows?.find((r) => r.id === classId)?.name ?? `Группа ${classId}`
+							eduPageData?.r.tables.find((t) => t.id === 'classes')?.data_rows.find((r) => r.id === classId)?.name ?? `Группа ${classId}`
 						return (
 							<ScheduleTable
 								key={index}
@@ -267,15 +297,12 @@ export function Schedule() {
 					})
 				)}
 
-				{/* Скрытый контейнер для генерации PDF */}
-				<div
-					id='pdf-print-area'
-					style={{ position: 'absolute', top: '-9999px', left: '-9999px', width: '1920px', height: '1080px', padding: '16px' }}
-				>
-					{timeTables.map((tableData, index) => {
-						const items = tableData.r.ttitems
+				{/* Hidden printable area for PDF */}
+				<div id='pdf-print-area' style={{ position: 'absolute', top: '-9999px', left: '-9999px', width: '1920px', padding: '16px' }}>
+					{tablesToShow.map((tableData, index) => {
+						const items = tableData?.r.ttitems ?? []
 						if (!items.length) return null
-						const classId = ids[index]
+						const classId = myGroupId !== 'all' ? myGroupId : groupIds[index]
 						const groupName =
 							eduPageData?.r.tables.find((s) => s.id === 'classes')?.data_rows?.find((r) => r.id === classId)?.name ?? `Группа ${classId}`
 						return (

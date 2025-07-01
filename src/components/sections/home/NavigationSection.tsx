@@ -14,7 +14,7 @@ export function NavigationSection() {
 					className='w-full xl:h-[113px] lg:h-[90px] h-[80px] rounded-[10px] bg-muted-foreground/10 500 px-5 py-4 flex justify-between items-center hover:opacity-85 transition-opacity'
 				>
 					<p className='xl:text-2xl lg:text-xl sm:text-sm text-[#222]'>Абитуриентам</p>
-					<Image src='/svg/applicant2.svg' alt='Абитуриентам' width={82} height={82} className='xl:size-[82px] lg:size-[60px] size-[50px] ' />
+					<Image src='/svg/applicant3.svg' alt='Абитуриентам' width={82} height={82} className='xl:size-[82px] lg:size-[60px] size-[50px] ' />
 				</Link>
 				<Link
 					href={PUBLIC_URL.students()}
