@@ -7,12 +7,13 @@ import { ADMIN_URL, PUBLIC_URL } from '@/config/url.config'
 import { MenuSections } from '@/constants/menu.constants'
 import { useProfile } from '@/hooks/useProfile'
 import { cn } from '@/lib/utils'
-import { UserCog2 } from 'lucide-react'
+import { CalendarDays, UserCog2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { ThemeSwitcher } from '../ThemeSwitcher'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/Tooltip'
 
 export function Header() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -98,6 +99,18 @@ export function Header() {
 							</Button>
 						</Link>
 					)}
+					<Link href={PUBLIC_URL.timetable()} className='mr-4'>
+						<Tooltip>
+							<TooltipTrigger asChild>
+								<Button type='button' size={'icon'} variant={'link'}>
+									<CalendarDays className='text-white size-6' />
+								</Button>
+							</TooltipTrigger>
+							<TooltipContent>
+								<p>Расписание</p>
+							</TooltipContent>
+						</Tooltip>
+					</Link>
 					<button onClick={() => setIsOpen(!isOpen)} className='relative w-6 h-4 cursor-pointer burger-menu'>
 						<div className={cn('w-6 h-[2px] bg-white absolute transition-all duration-500', isOpen ? 'rotate-45 top-2' : 'top-0')} />
 						<div className={cn('w-6 h-[2px] bg-white absolute transition-all duration-500', isOpen ? 'opacity-0' : 'top-2')} />
