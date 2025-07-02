@@ -6,7 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { AboutList } from './AboutList'
 import { ArrowUpFromDot } from 'lucide-react'
-import { FormModal } from '@/components/ui/modals/FormModal'
+import dynamic from 'next/dynamic'
+
+const FormModal = dynamic(() => import('@/components/ui/modals/FormModal'))
 
 export function University() {
 	return (

@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/Container'
 import { PUBLIC_URL } from '@/config/url.config'
 import Link from 'next/link'
 
-export function HistorySection() {
+export default function HistorySection() {
 	return (
 		<Container className='pt-20'>
 			<h2 className='mb-10 text-3xl'>История ТФ МГУ</h2>

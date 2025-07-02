@@ -6,7 +6,7 @@ import { Button } from '../Button'
 import Link from 'next/link'
 import { PUBLIC_URL } from '@/config/url.config'
 
-export function FormModal() {
+export default function FormModal() {
 	return (
 		<Dialog>
 			<DialogTrigger className='cursor-pointer fixed bottom-[30px] right-[30px]' asChild>
@@ -21,9 +21,7 @@ export function FormModal() {
 							Инструкция по подаче документов
 						</Link>
 					</DialogTitle>
-					<DialogDescription className='text-center text-muted-foreground'>
-						Остались вопросы? Оставьте заявку и мы с вами свяжемся!
-					</DialogDescription>
+					<DialogDescription className='text-center text-muted-foreground'>Остались вопросы? Оставьте заявку и мы с вами свяжемся!</DialogDescription>
 				</DialogHeader>
 				<ContactForm />
 			</DialogContent>

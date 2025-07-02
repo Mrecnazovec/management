@@ -6,7 +6,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { PATH_URL } from '@/config/url.config'
-import { FormModal } from '@/components/ui/modals/FormModal'
+import dynamic from 'next/dynamic'
+
+const FormModal = dynamic(() => import('@/components/ui/modals/FormModal'))
 
 interface Props {
 	className?: string

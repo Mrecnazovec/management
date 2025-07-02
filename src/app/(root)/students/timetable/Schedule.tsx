@@ -20,10 +20,8 @@ import { ArrowLeft, ArrowRight, Calendar1, FileDown } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import toast from 'react-hot-toast'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { ScheduleTable } from './ScheduleTable'
-import { TableToPrint } from './toPrint/TableToPrint'
 
 const PDFPrintArea = dynamic(() => import('./toPrint/PDFPrintArea'), { ssr: false })
 
@@ -100,6 +98,7 @@ export function Schedule() {
 	}, [currentFrom])
 
 	const handleDownloadPDF = async () => {
+		const { toast } = await import('react-hot-toast')
 		const container = document.getElementById('pdf-print-area')
 		if (!container) return toast.error('Не найден контейнер для печати')
 

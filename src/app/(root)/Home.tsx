@@ -1,11 +1,13 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import CountdownTimer from '@/components/sections/home/CountdownTimer'
-import { HistorySection } from '@/components/sections/home/HistorySection'
 import { NavigationSection } from '@/components/sections/home/NavigationSection'
-import { NewsSection } from '@/components/sections/home/NewsSection'
 import { NumberSection } from '@/components/sections/home/NumberSection'
-import { FormModal } from '@/components/ui/modals/FormModal'
+
+const NewsSection = dynamic(() => import('@/components/sections/home/NewsSection'))
+const HistorySection = dynamic(() => import('@/components/sections/home/HistorySection'))
+const FormModal = dynamic(() => import('@/components/ui/modals/FormModal'))
 
 export function Home() {
 	return (

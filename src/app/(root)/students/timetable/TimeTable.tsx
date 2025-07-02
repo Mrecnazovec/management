@@ -24,7 +24,6 @@ import Link from 'next/link'
 import { LoaderSkeleton } from './LoaderSkeleton'
 import { SubjectLink } from './SubjectLink'
 import { PrintableSchedule } from './toPrint/PrintableSchedule'
-import toast from 'react-hot-toast'
 
 export function TimeTable() {
 	const router = useRouter()
@@ -149,6 +148,7 @@ export function TimeTable() {
 	}
 
 	const handleDownloadPDF = async () => {
+		const { toast } = await import('react-hot-toast')
 		toast.success('Началась конвертация')
 		const element = document.getElementById('timetable')
 		if (!element) return
