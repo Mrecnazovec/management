@@ -247,6 +247,12 @@ export function Schedule() {
 						</Select>
 					</div>
 
+					{isNotCurrentWeek && (
+						<Button onClick={returnToCurrentWeek} disabled={isLoading || isLoadingTimeTable} variant='main' className='text-sm'>
+							Вернуться к текущей неделе
+						</Button>
+					)}
+
 					<div className='flex gap-2'>
 						<Button onClick={() => changeWeek('prev')} disabled={isLoading || isLoadingTimeTable} variant={'outline'}>
 							<ArrowLeft className='size-4' />
@@ -265,12 +271,6 @@ export function Schedule() {
 							<ArrowRight className='size-4' />
 						</Button>
 					</div>
-
-					{isNotCurrentWeek && (
-						<Button onClick={returnToCurrentWeek} disabled={isLoading || isLoadingTimeTable} variant='main' className='text-sm'>
-							Вернуться к текущей неделе
-						</Button>
-					)}
 				</div>
 
 				{/* Desktop schedule */}
