@@ -1,28 +1,31 @@
 'use client'
 
-import { Container } from '@/components/ui/Container'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useGetEduPageData } from '@/hooks/queries/edu-page/useGetEduPageData'
-import { useGetAllEduPageTimeTables } from '@/hooks/queries/edu-page/useGetAllEduPageTimeTables'
-import { addDays, areIntervalsOverlapping, endOfWeek, format, formatISO, parse, parseISO, startOfWeek } from 'date-fns'
-import { getEndOfWeek, getStartOfWeek } from '@/lib/eduPageGetDate'
-import { useEffect, useMemo, useRef, useState } from 'react'
 import { Button } from '@/components/ui/Button'
-import { ArrowLeft, ArrowRight, Calendar1, FileDown } from 'lucide-react'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { Calendar } from '@/components/ui/Calendar'
-import { ru } from 'date-fns/locale'
-import { TimetableItem } from '@/shared/types/edu-page-timetable.interface'
-import { ScheduleTable } from './ScheduleTable'
-import toast from 'react-hot-toast'
-import domtoimage from 'dom-to-image'
-import { TableToPrint } from './toPrint/TableToPrint'
-import { LoaderSkeleton } from './LoaderSkeleton'
-import { Skeleton } from '@/components/ui/Skeleton'
-import { generatePdfFromDom } from '@/lib/pdf-generator'
-import Cookies from 'js-cookie'
+import { Container } from '@/components/ui/Container'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
+import { Skeleton } from '@/components/ui/Skeleton'
+import { useGetAllEduPageTimeTables } from '@/hooks/queries/edu-page/useGetAllEduPageTimeTables'
+import { useGetEduPageData } from '@/hooks/queries/edu-page/useGetEduPageData'
+import { getEndOfWeek, getStartOfWeek } from '@/lib/eduPageGetDate'
+import { generatePdfFromDom } from '@/lib/pdf-generator'
+import { TimetableItem } from '@/shared/types/edu-page-timetable.interface'
+import { addDays, areIntervalsOverlapping, endOfWeek, format, formatISO, parse, parseISO, startOfWeek } from 'date-fns'
+import { ru } from 'date-fns/locale'
+import domtoimage from 'dom-to-image'
+import Cookies from 'js-cookie'
 import { isEqual } from 'lodash'
+import { ArrowLeft, ArrowRight, Calendar1, FileDown } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
+import { LoaderSkeleton } from './LoaderSkeleton'
+import { ScheduleTable } from './ScheduleTable'
+import { TableToPrint } from './toPrint/TableToPrint'
+
+const PDFPrintArea = dynamic(() => import('./toPrint/PDFPrintArea'), { ssr: false })
 
 export function Schedule() {
 	const router = useRouter()
@@ -277,7 +280,6 @@ export function Schedule() {
 				) : (
 					tablesToShow.map((tableData, index) => {
 						const items = tableData?.r.ttitems ?? []
-						if (!items.length) return null
 						const classId = myGroupId !== 'all' ? myGroupId : groupIds[index]
 						const groupName =
 							eduPageData?.r.tables.find((t) => t.id === 'classes')?.data_rows.find((r) => r.id === classId)?.name ?? `Группа ${classId}`
@@ -298,28 +300,17 @@ export function Schedule() {
 				)}
 
 				{/* Hidden printable area for PDF */}
-				<div id='pdf-print-area' style={{ position: 'absolute', top: '-9999px', left: '-9999px', width: '1920px', padding: '16px' }}>
-					{tablesToShow.map((tableData, index) => {
-						const items = tableData?.r.ttitems ?? []
-						if (!items.length) return null
-						const classId = myGroupId !== 'all' ? myGroupId : groupIds[index]
-						const groupName =
-							eduPageData?.r.tables.find((s) => s.id === 'classes')?.data_rows?.find((r) => r.id === classId)?.name ?? `Группа ${classId}`
-						return (
-							<TableToPrint
-								key={index}
-								groupName={groupName}
-								periods={periods}
-								weekDates={weekDates}
-								items={items}
-								getSubjectName={getSubjectName}
-								getClassroomsName={getClassroomsName}
-								getTeachersName={getTeachersName}
-								splitIntoPeriodCards={splitIntoPeriodCards}
-							/>
-						)
-					})}
-				</div>
+				<PDFPrintArea
+					tablesToShow={tablesToShow}
+					groupIds={groupIds}
+					eduPageData={eduPageData}
+					periods={periods}
+					weekDates={weekDates}
+					getSubjectName={getSubjectName}
+					getClassroomsName={getClassroomsName}
+					getTeachersName={getTeachersName}
+					splitIntoPeriodCards={splitIntoPeriodCards}
+				/>
 			</Container>
 
 			{/* Mobile расписание */}

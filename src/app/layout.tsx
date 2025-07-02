@@ -1,12 +1,10 @@
-// RootLayout.tsx
-
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME } from '@/constants/seo.constants'
+import { SITE_AUTHOR, SITE_NAME } from '@/constants/seo.constants'
 import Script from 'next/script'
 import { Providers } from './providers'
-import { cookies } from 'next/headers'
+import { BodyProvider } from '@/components/layouts/main-layout/BodyProvider'
 
 const interSans = Inter({
 	variable: '--font-inter-sans',
@@ -33,16 +31,13 @@ export const metadata: Metadata = {
 	},
 }
 
-export default async function RootLayout({
+export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const cookieStore = await cookies()
-	const theme = cookieStore.get('theme')?.value || 'new'
-
 	return (
-		<html lang='ru'>
+		<html lang='ru' className={interSans.variable}>
 			<head>
 				<meta name='yandex-verification' content='3acc2482785d4638' />
 
@@ -79,9 +74,9 @@ export default async function RootLayout({
 					`}
 				</Script>
 			</head>
-			<body className={`${interSans.variable} antialiased pt-[90px] max-[390px]:pt-[70px] ${theme}`}>
+			<BodyProvider>
 				<Providers>{children}</Providers>
-			</body>
+			</BodyProvider>
 		</html>
 	)
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { Container } from '@/components/ui/Container'
 import { HeroStudents } from './HeroStudents'
 import Link from 'next/link'

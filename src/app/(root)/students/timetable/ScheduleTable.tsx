@@ -1,3 +1,5 @@
+'use client'
+
 import { format, parseISO } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { TimetableItem } from '@/shared/types/edu-page-timetable.interface'
