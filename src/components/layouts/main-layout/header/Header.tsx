@@ -93,13 +93,13 @@ export function Header() {
 
 				<div className='flex items-center'>
 					{!isLoading && user && (
-						<Link href={ADMIN_URL.home()} className='mr-4'>
+						<Link href={ADMIN_URL.home()}>
 							<Button type='button' size={'icon'} variant={'link'}>
 								<UserCog2 className='text-white size-6' />
 							</Button>
 						</Link>
 					)}
-					<Link href={PUBLIC_URL.timetable()} className='mr-4'>
+					<Link href={PUBLIC_URL.timetable()} className='mr-1.5'>
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<Button type='button' size={'icon'} variant={'link'}>

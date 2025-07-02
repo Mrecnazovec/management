@@ -227,7 +227,7 @@ export function Schedule() {
 			<Container>
 				{/* Header */}
 				<div className='flex flex-wrap items-center lg:flex-row flex-col lg:justify-between justify-center gap-4 mb-4'>
-					<div className='flex gap-2'>
+					<div className='flex gap-2 xs:flex-row flex-col justify-center items-center'>
 						<Button onClick={handleDownloadPDF} disabled={isLoadingTimeTable} variant='outline' className='gap-2'>
 							<FileDown className='w-4 h-4' /> Скачать PDF
 						</Button>
