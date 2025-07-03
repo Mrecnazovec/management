@@ -5,6 +5,8 @@ import { Bread } from '@/components/ui/Breadcrumb/Bread'
 
 export const metadata: Metadata = {
 	title: 'Учебный план',
+	description:
+		'Актуальный учебный план для студентов направления «Менеджмент» Ташкентского филиала МГУ. Ознакомьтесь со структурой курса и дисциплинами по семестрам.',
 }
 
 export const revalidate = 60
