@@ -1,6 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '../Breadcrumb'
 import { Container } from '../Container'
+import Link from 'next/link'
 
 interface Props {
 	navigation: NavigationProps[]
@@ -21,7 +22,7 @@ export function Bread({ navigation }: Props) {
 							<div key={index} className='flex items-center gap-2.5'>
 								<BreadcrumbItem>
 									{item.link ? (
-										<BreadcrumbLink href={item.link}>{item.title}</BreadcrumbLink>
+										<Link href={item.link}>{item.title}</Link>
 									) : (
 										<BreadcrumbPage className='text-main'>{item.title}</BreadcrumbPage>
 									)}
