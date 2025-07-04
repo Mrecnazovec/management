@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react'
 
 type ThemeContextType = {
 	theme: string
@@ -17,7 +17,7 @@ export const useTheme = () => useContext(ThemeContext)
 export const BodyProvider = ({ children }: { children: React.ReactNode }) => {
 	const [theme, setThemeState] = useState('new')
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const cookieMap = document.cookie
 			.split('; ')
 			.map((c) => c.split('='))
@@ -26,7 +26,7 @@ export const BodyProvider = ({ children }: { children: React.ReactNode }) => {
 		setThemeState(cookieMap.theme || 'new')
 	}, [])
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		document.body.className = `antialiased pt-[90px] max-[390px]:pt-[70px] ${theme}`
 		document.body.setAttribute('data-theme', theme)
 	}, [theme])
